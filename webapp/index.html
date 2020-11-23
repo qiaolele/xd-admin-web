@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="daichao/css/loader.css" rel="stylesheet">
+
+</head>
+<body>
+<header id="header">
+    <a href="#" class="logo">后台管理平台</a>
+    <a href="#" id="btn-left">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </a>
+    <a href="#" id="btn-right" title="退出">
+        <span class="glyphicon glyphicon-log-out"></span>
+    </a>
+</header>
+<aside id="menu">
+    <div id="menu-user">
+        <img id="menu-user-face" src="daichao/images/common/head@2x.png">
+        <span id="menu-user-name">&nbsp;</span>
+    </div>
+    <div id="menu-group"></div>
+</aside>
+<div id="wrapper">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="line"></span>
+    <div id="navbar-wrap">
+        <div id="navbar">
+            <ul id="nav-tabs" class="nav nav-tabs"></ul>
+        </div>
+    </div>
+
+    <!-- Tab panes -->
+    <div id="tab-content" class="tab-content"></div>
+</div>
+<div id="modalContainer"></div>
+
+<div class="loaders" id="loaders"></div>
+
+<script src="daichao/js/jquery.min.js"></script>
+<script src="daichao/js/cookie.js"></script>
+<script src="daichao/js/bootstrap.min.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/timeOut.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+/** Easy Tree style */
+.easy-tree {
+    min-height: 20px;
+    margin-bottom: 20px;
+}
+
+.easy-tree > ul {
+    padding-left: 15px;
+}
+
+.easy-tree li {
+    list-style-type: none;
+    margin: 0;
+    /*padding: 10px 5px 0 5px;*/
+    position: relative
+}
+
+.easy-tree li::before, .easy-tree li::after {
+    content: '';
+    left: -30px;
+    position: absolute;
+    right: auto
+}
+
+.easy-tree li::before {
+    border-left: 1px solid #ccc;
+    height: 100%;
+    top: -10px;
+    width: 1px
+}
+
+.easy-tree li::after {
+    border-top: 1px solid #ccc;
+    top: 20px;
+    width: 30px
+}
+
+.easy-tree li > span {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none
+}
+
+.easy-tree li.parent_li > span {
+    cursor: pointer
+}
+
+
+.easy-tree > ul > li::before, .easy-tree > ul > li::after {
+    border: 0
+}
+
+.easy-tree li:last-child::before {
+    height: 30px
+}
+
+.easy-tree li.li_selected > span {
+    color: #FFB200;
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../daichao/css/loader.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <link href="../common/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../common/viewer.min.css" />
+  </head>
+  <style scoped>
+    [v-cloak] {
+      display: none;
+    }
+
+    #iframe-content {
+      margin-top: 20px;
+    }
+
+    .col-pane {
+      margin-top: 20px;
+    }
+
+    .block {
+      margin: 20px 0;
+    }
+
+    .submit {
+      color: #4d4d4d;
+      background-color: #ffd954;
+      border-color: #ffd954;
+      outline: none;
+    }
+
+    .toast_box {
+      display: flex;
+    }
+
+    .toast_width {
+      width: 60%;
+    }
+
+    .toast_width2 {
+      width: 40%;
+    }
+
+    .info_left {
+      width: 100px;
+      display: inline-block;
+    }
+
+    .info_top {
+      margin-top: 15px;
+    }
+
+    .info_img {
+      width: 150px;
+      height: 110px;
+      margin-right: 10px;
+    }
+
+    .info_dis {
+      display: flex;
+    }
+
+    .el-radio__input.is-checked .el-radio__inner {
+      border-color: #606266;
+      background: #606266;
+    }
+
+    .el-radio__input.is-checked + .el-radio__label {
+      color: #606266;
+    }
+
+    .el-dialog__body {
+      padding: 10px 20px;
+    }
+
+    .back_reason {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .el-textarea {
+      width: 40%;
+    }
+  </style>
+
+  <body id="iframe-body">
+    <div id="iframe-content" class="container-fluid" v-cloak>
+      <ul class="nav nav-tabs" id="myTab">
+        <li role="presentation" class="active basicInfo">
+          <a href="#" role="tab" data-toggle="tab" @click="clickTabOne"
+            >未审核</a
+          >
+        </li>
+        <li role="presentation" class="orderQuery">
+          <a href="#" role="tab" data-toggle="tab" @click="clickTabTwo"
+            >审核通过</a
+          >
+        </li>
+        <li role="presentation" class="vipQuery">
+          <a href="#" role="tab" data-toggle="tab" @click="clickTabThree"
+            >审核驳回</a
+          >
+        </li>
+      </ul>
+      <!--  -->
+      <div class="col-pane col-pane-right">
+        <div class="panel panel-select">
+          <form class="form-inline">
+            <div class="input-group">
+              <span class="input-group-addon">信贷员手机号</span>
+              <input
+                v-model="phoneNum"
+                type="text"
+                class="form-control w150"
+                id="phone-search"
+                data-param="name"
+                placeholder="请输入手机号"
+              />
+            </div>
+            <div class="input-group">
+              <button
+                type="button"
+                class="btn btn-default queryBtn"
+                @click="phoneList"
+              >
+                查询
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--  -->
+      <div class="panel panel-table">
+        <table>
+          <thead>
+            <tr>
+              <th>信贷员手机号</th>
+              <th>信贷员姓名</th>
+              <th>用户手机号</th>
+              <th>价格</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in list" :key="index">
+              <td>{{item.creditPhone}}</td>
+              <td>{{item.creditName}}</td>
+              <td>{{item.userPhone}}</td>
+              <td>{{item.goldCount}}</td>
+              <td>
+                <button class="btn setProduct" @click="showDigo(item)">
+                  查看
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--分页-->
+        <div class="block" v-show="totalNum>0">
+          <el-pagination
+            background
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-size="size"
+            layout="total, prev, pager, next,jumper"
+            :total="totalNum"
+          >
+          </el-pagination>
+        </div>
+        <!-- 弹窗 -->
+        <el-dialog
+          title="退单审核"
+          width="65%"
+          :visible.sync="dialogFormVisible"
+        >
+          <div class="digo_wrap" id="jqhtml">
+            <div class="toast_box">
+              <div class="toast_width">
+                <div>
+                  <span class="info_left">信贷员姓名</span>
+                  <span>{{toastInfo.creditName}}</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">信贷员手机号</span>
+                  <span>{{toastInfo.creditPhone}}</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">用户姓名</span>
+                  <span>{{toastInfo.userName}}</span>
+                </div>
+                <div class="info_top info_dis">
+                  <span class="info_left">证明截图</span>
+                  <div>
+                    <img
+                      v-for="(item,index) in toastImgs"
+                      ::key="index"
+                      class="info_img"
+                      :src="item"
+                      alt=""
+                      :data-original="item"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="toast_width2">
+                <div>
+                  <span class="info_left">拨打时间</span>
+                  <el-select
+                    v-model="value"
+                    clearable
+                    placeholder="查看拨打时间"
+                    size="mini"
+                  >
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">用户手机号</span>
+                  <span>{{toastInfo.userPhone}}</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">退单单号</span>
+                  <span>{{toastInfo.orderId}}</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">价格</span>
+                  <span>{{toastInfo.goldCount}}币</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">退单原因</span>
+                  <span>{{toastInfo.singleRemark}}</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">抢单时间</span>
+                  <span>{{toastInfo.grabSingleTime}}</span>
+                </div>
+                <div class="info_top">
+                  <span class="info_left">申请退单时间</span>
+                  <span>{{toastInfo.gmtCreate}}</span>
+                </div>
+                <div
+                  class="info_top"
+                  v-if="chooseStatus==13 || chooseStatus==12"
+                >
+                  <span class="info_left">无理由退单券</span>
+                  <span>
+                    {{toastInfo.memberCouId?toastInfo.memberCouId:'无'}}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="info_top" v-show="chooseStatus==14">
+              <span class="info_left">审核结果</span>
+              <el-radio-group
+                style="margin-top: 4px"
+                v-model="radio"
+                fill="“red"
+              >
+                <el-radio :label="12">通过</el-radio>
+                <el-radio :label="13">驳回</el-radio>
+              </el-radio-group>
+            </div>
+            <div class="back_reason" v-show="chooseStatus==14&&radio==13">
+              <span class="info_left">驳回原因</span>
+              <el-input
+                type="textarea"
+                :rows="2"
+                placeholder="请输入内容"
+                v-model="textarea"
+                maxlength="50"
+                show-word-limit
+                :disabled="disabled"
+              >
+              </el-input>
+            </div>
+            <div class="back_reason" v-if="chooseStatus==13">
+              <span class="info_left">驳回原因</span>
+              <span>{{toastInfo.rejectReason}}</span>
+            </div>
+          </div>
+          <div slot="footer" class="dialog-footer" v-show="chooseStatus==14">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button class="submit" @click="submitBtn(toastInfo.orderId)"
+              >提交</el-button
+            >
+          </div>
+        </el-dialog>
+      </div>
+    </div>
+
+    <script src="../../daichao/js/jquery.min.js"></script>
+    <script src="../../daichao/js/cookie.js"></script>
+    <script src="../../daichao/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="../common/viewer-jquery.min.js"
+    ></script>
+    <script src="../common/viewer.min.js"></script>
+
+    <script src="../common/common.js"></script>
+    <script src="./js/chargeBack.js"></script>
+  </body>
+</html>

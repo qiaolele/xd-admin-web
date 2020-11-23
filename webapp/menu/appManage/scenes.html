@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../common/style.css" rel="stylesheet">
+    <link href="../common/format.css" rel="stylesheet">
+</head>
+<style>
+    .form-inline .input-group input {
+        min-width: 0!important;
+    }
+</style>
+<body id="iframe-body">
+
+<div id="iframe-content" class="container-fluid">
+    <div class="panel-head"><h4>场景管理</h4></div>
+    <div class="panel-body">
+        <div class="panel panel-select">
+            <form class="form-inline">
+                <div class="input-group">
+                    <span class="input-group-addon">场景名称</span>
+                    <input type="text" class="form-control" placeholder="场景名称" data-param="name">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">展示页面</span>
+                    <div class="selectWrap">
+                        <select data-param="homePageType">
+                            <option value="">全部</option>
+                            <option value="0">贷款页</option>
+                            <option value="1">新口子</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">贷款页名称</span>
+                    <div class="selectWrap loanPage" style="width: 110%;">
+                        <select data-param="loanPageId">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">新口子页名称</span>
+                    <div class="selectWrap newCut" style="width: 110%;">
+                        <select data-param="newOpeningPageId">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-default queryBtn">
+                        查询
+                    </button>
+                </div>
+                <div class="input-group">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+                        新增场景
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-table">
+        <table>
+            <thead>
+            <tr>
+                <th class="operaterBtnGroups">操作</th>
+                <th>场景ID</th>
+                <th>场景名称</th>
+                <th>展示页面</th>
+                <th>贷款页名称</th>
+                <th>新口子名称</th>
+                <th>绑定代理数量</th>
+                <th>更新时间</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <ul class="pagination"></ul>
+    </div>
+</div>
+
+<div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">场景</h4>
+            </div>
+            <div class="modal-body panel-table">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="text-danger">*</span>
+                            场景名称
+
+                        </span>
+                        <input class="form-control" data-param="name">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="text-danger">*</span>
+                              默认首页
+                        </span>
+                        <div class="form-control noBorder noPaddingLR">
+                            <label class="radio-inline">
+                                <input type="radio" name="defaultHomePage" value="0" checked>
+                                <label class="radio-beauty"></label>
+                                <span>贷款页</span>
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="defaultHomePage"
+                                       value="1">
+                                <label class="radio-beauty"></label>
+                                <span>新口子</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+
+                        <span class="input-group-addon"><span class="text-danger">*</span>APP贷款</span>
+                        <select class="form-control APPLoan" data-param="loanPageId">
+
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="text-danger">*</span>APP新口子</span>
+                        <select class="form-control APPNewCut" data-param="newOpeningPageId">
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default saveBtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <h4>确认删除?</h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-default deleteConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../daichao/js/jquery.min.js"></script>
+<script src="../../daichao/js/bootstrap.min.js"></script>
+<script src="../../daichao/js/cookie.js"></script>
+<script src="../../js/pager.js"></script>
+<script src="../common/common.js"></script>
+<script src="js/scenes.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,448 @@
+.editProductModal .from-inline .input-group {
+  margin-bottom: 15px;
+}
+
+#certification .col-pane-body,
+#baseConfig .col-pane-body {
+  border: 1px solid #e6e6e6 !important;
+  padding: 0 !important;
+  margin-right: 10px;
+}
+
+#certification .col-md-3 li,
+#baseConfig .col-md-3 li {
+  margin: 0 0 20px 13px;
+}
+
+#description .form-inline div:nth-of-type(odd) {
+  float: right;
+}
+
+.noBorder {
+  border: none !important;
+}
+
+.noPaddingLR {
+  padding: 4px 0 !important;
+}
+
+.slash {
+  line-height: 36px;
+  margin: 0 6px;
+  width: 8px;
+}
+
+#editProduct .modal-body,
+#myModal.editProductModal .modal-body {
+  height: 600px;
+}
+
+.editProductModal .modal-footer {
+  border: none;
+}
+
+.editProductModal .input-group {
+  display: flex;
+}
+
+.editProductModal .input-group-addon {
+  border: none;
+  background: none;
+  min-width: 120px !important;
+  text-align: right;
+  line-height: 36px;
+  display: block;
+  padding: 0;
+  padding-right: 12px;
+}
+
+.editProductModal .from-inline .form-control {
+  height: 36px;
+  padding: 4px 12px;
+  border-radius: 4px !important;
+}
+
+.editProductModal .input-group .form-control:last-child,
+.editProductModal .input-group .form-control:first-child,
+.editProductModal .input-group-addon:not(:first-child):not(:last-child),
+.editProductModal .input-group-btn:not(:first-child):not(:last-child),
+.editProductModal .input-group .form-control:not(:first-child):not(:last-child),
+.editProductModal .form-inline .input-group .selectWrap select {
+  border-radius: 4px !important;
+}
+
+.editProductModal .form-control[disabled] {
+  background: none !important;
+  border: none;
+  cursor: default;
+}
+
+.editProductModal .form-control.w110 {
+  width: 100px !important;
+  margin-left: 20px;
+}
+
+.editProductModal .form-control.minus130 {
+  width: calc(100% - 130px);
+}
+
+.editProductModal .form-control.w140 {
+  width: 140px !important;
+}
+
+.editProductModal .form-control.w340 {
+  width: 340px !important;
+}
+
+.editProductModal .form-control.doubleInput {
+  width: calc((100% - 20px) / 2);
+}
+
+.editProductModal .fileUpload {
+  width: 180px !important;
+  height: 80px !important;
+  line-height: 80px;
+  cursor: pointer;
+}
+
+.editProductModal .fileUpload img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.editProductModal .activeBody::-webkit-scrollbar {
+  width: 0px;
+}
+
+.editProductModal .featureTips {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  padding: 0 !important;
+}
+
+.editProductModal .featureTip {
+  height: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(190, 200, 210, 1);
+  margin: 6px;
+  line-height: 14px;
+  margin-left: 0;
+}
+
+.editProductModal .selectWrap {
+  width: 100%;
+}
+
+.editProductModal .nav>li {
+  background: rgba(251, 251, 252, 1);
+  border: 1px solid rgba(230, 230, 230, 1);
+  border-left: none;
+  margin: 0;
+  border-bottom: none;
+}
+
+.editProductModal .nav>li:hover {
+  background: none;
+}
+
+.editProductModal .nav-tabs>li>a {
+  border-radius: 0;
+  border: none;
+  margin: 0;
+  cursor: default;
+}
+
+.editProductModal .nav-tabs>li>a:hover {
+  background: rgba(251, 251, 252, 1);
+  color: #333;
+  border: none;
+  margin: 0;
+}
+
+.editProductModal .nav>li:first-child {
+  border-left: 1px solid rgba(230, 230, 230, 1);
+}
+
+.editProductModal .nav>li.active {
+  border-bottom: none;
+}
+
+.editProductModal .nav-tabs>li.active>a,
+.editProductModal .nav-tabs>li.active>a:hover,
+.editProductModal .nav-tabs>li.active>a:focus {
+  border: none;
+  margin: 0;
+  background: #fff;
+}
+
+.editProductModal .radio-inline>input {
+  display: none;
+}
+
+.editProductModal .radio-inline input[type="radio"]:checked+.radio-beauty {
+  padding: 4px;
+  background-color: #7D93AC;
+  background-clip: content-box;
+}
+
+.editProductModal .radio-inline .radio-beauty {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid #939CA5;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.radio-inline span::before,
+.checkbox-inline span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.editProductModal .radio-inline,
+.editProductModal .checkbox-inline {
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.editProductModal .checkbox-inline>input {
+  display: none;
+}
+
+.editProductModal .checkbox-inline>label {
+  margin: 0;
+  border-radius: 3px;
+}
+
+.editProductModal .checkbox-inline input[type="checkbox"]:checked+.checkbox-beauty {
+  background-color: #7D93AC;
+  background-clip: content-box;
+}
+
+.editProductModal .checkbox-inline .checkbox-beauty {
+  border: 1px solid #939CA5;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.editProductModal .checkbox-inline input:checked+label::after {
+  position: absolute;
+  content: "";
+  width: 5px;
+  height: 10px;
+  top: 7px;
+  left: 5px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg)
+}
+
+.editProductModal .authlist .checkbox-inline input:checked+label::after {
+  top: 5px;
+}
+
+.authModal {
+  position: absolute;
+  width: 260px;
+  background: #fff;
+  z-index: 9999;
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
+  margin-left: 22px;
+  margin-top: 10px;
+}
+
+.authModal:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #fff transparent;
+  position: relative;
+  top: -26px;
+}
+
+.authModal .authModal-header {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(106, 108, 111, 1);
+  line-height: 36px;
+  margin: 10px 30px;
+  text-align: left;
+}
+
+.authModal .authModal-header:before {
+  width: 4px;
+  height: 16px;
+  content: "";
+  display: inline-block;
+  background: rgba(255, 217, 84, 1);
+  position: relative;
+  top: 2px;
+  left: -8px;
+}
+
+.authModal .authModal-foober {
+  margin: 16px;
+  text-align: right;
+}
+
+.authModal .radio-inline {
+  display: block;
+  text-align: left;
+  margin-left: 35px;
+  margin-bottom: 20px;
+}
+
+.authListTable .input-group {
+  display: table-row;
+}
+
+.otherModal .input-group-addon {
+  border: none;
+  background: none;
+  line-height: 36px;
+  display: inline-block;
+  float: left;
+  padding: 0;
+}
+
+.otherModal .input-group>.form-control {
+  width: 80%;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+.otherModal .input-group .form-control:last-child,
+.otherModal .input-group .form-control:first-child,
+.otherModal .input-group-addon:not(:first-child):not(:last-child),
+.otherModal .input-group-btn:not(:first-child):not(:last-child),
+.otherModal .input-group .form-control:not(:first-child):not(:last-child),
+.otherModal .form-inline .input-group .selectWrap select {
+  border-radius: 4px !important;
+}
+
+.otherModal .checkbox-inline input[type="checkbox"]:checked+.checkbox-beauty {
+  background-color: #7D93AC;
+  background-clip: content-box;
+}
+
+.otherModal .checkbox-inline .checkbox-beauty {
+  border: 1px solid #939CA5;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.otherModal .checkbox-inline input:checked+label::after {
+  position: absolute;
+  content: "";
+  width: 5px;
+  height: 10px;
+  top: 7px;
+  left: 5px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg)
+}
+
+.otherModal .radio-inline>input {
+  display: none;
+}
+
+.otherModal .radio-inline input[type="radio"]:checked+.radio-beauty {
+  padding: 4px;
+  background-color: #7D93AC;
+  background-clip: content-box;
+}
+
+.otherModal .radio-inline .radio-beauty {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid #939CA5;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.otherModal .date .input-group-addon {
+  width: 40px !important;
+  border: 1px solid #e6e6e6;
+  background-color: #fbfbfc;
+  border-left: none;
+  height: 40px;
+  line-height: 40px;
+  margin-left: -2px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.otherModal .date input.form-control {
+  width: 80%;
+}
+
+.otherModal .date {
+  width: 85%;
+}
+
+.editProductModal .tags {
+  height: auto;
+}
+
+.editProductModal .tags .checkbox-inline {
+  width: 80px;
+}
+
+#entrance .checkbox-inline {
+  width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#certification .col-pane-title {
+  text-align: left;
+  height: 36px;
+  line-height: 36px;
+  padding: 0;
+  margin-top: 0;
+  text-indent: 13px;
+}
+
+#certification .panel-table>table>tbody>tr:nth-of-type(odd) {
+  background: #F1F3F6 !important;
+}
+
+#description textarea.form-control {
+  height: 110px;
+}
+
+#myTab .active:after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 9999;
+  background: #fff;
+}

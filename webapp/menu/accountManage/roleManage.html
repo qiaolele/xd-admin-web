@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/css/icheck.css" rel="stylesheet">
+
+</head>
+
+<body id="iframe-body">
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>角色管理</h4>
+    </div>
+    <div class="panel-body">
+      <div class="row row-body">
+        <div class="col-md-3" id="menuList">
+          <div class="col-pane col-pane-left">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+            <div class="col-pane-body">
+              <h5 class="col-pane-title">新增角色</h5>
+              <div class="form-group">
+                <label class="control-label"><i class="icon-must">*</i><span class="label-title">角色名称</span><span
+                    class="error-tips" id="roleName-tips">角色名称不能为空</span></label>
+                <input class="form-control" type="text" maxlength="20" id="roleName-input" placeholder="请输入角色名称" />
+              </div>
+              <div class="form-group">
+                <label class="control-label">备注</label>
+                <textarea class="form-control" id="remark"></textarea>
+              </div>
+              <div class="form-group" id="menuAdd"></div>
+              <div class="form-group">
+                <label class="control-label"><span class="error-tips" id="menu-tips">菜单不能为空</span></label>
+              </div>
+              <div class="form-group form-group-submit">
+                <button type="button" class="btn btn-default btn-rest">重置</button>
+                <button type="button" class="btn btn-default btn-enter">确认</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="col-pane col-pane-right">
+            <div class="panel panel-select">
+              <form class="form-inline">
+                <div class="input-group">
+                  <span class="input-group-addon">角色名称</span>
+                  <input type="text" class="form-control w150" id="roleName-search" placeholder="请输入角色名称">
+                </div>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default" id="btn-search"><span
+                      class="glyphicon glyphicon-search"></span>查询
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="panel panel-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>角色名称</th>
+                    <th>用户数</th>
+                    <th>备注</th>
+                    <th>创建时间</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+              <!--分页-->
+              <ul class="pagination" id="page"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/roleManage.js"></script>
+</body>
+
+</html>

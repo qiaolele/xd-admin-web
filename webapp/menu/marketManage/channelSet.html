@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../daichao/plugin/datetimepicker/datetimepicker.css"
+          rel="stylesheet">
+    <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+    .error-tips {
+        display: inline-block;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 10px;
+    }
+    .border{
+        border: 1px solid red;
+    }
+</style>
+
+<body id="iframe-body">
+
+<div id="iframe-content" class="container-fluid">
+    <div class="panel-head"><h4>渠道结算管理</h4></div>
+    <div class="panel-body">
+        <div class="panel panel-select">
+            <form class="form-inline">
+                <div class="input-group">
+                    <span class="input-group-addon">一级渠道名称</span>
+                    <input type="text" class="form-control" placeholder="请输入渠道名称" data-param="name">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">渠道类型</span>
+                    <div class="selectWrap">
+                        <select data-param="type">
+                            <option value="">全部</option>
+                            <option value="0">渠道推广</option>
+                            <option value="1">市场推广</option>
+                            <option value="2">活动推广</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-default query-btn">
+                        查询
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-table">
+        <table>
+            <thead>
+            <tr>
+                <th style="width: 20%;">操作</th>
+                <th>序号</th>
+                <th>一级渠道名称</th>
+                <th>渠道类型</th>
+                <th style="width: 20%;">折A</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <ul class="pagination"></ul>
+    </div>
+</div>
+<!--折扣历史-->
+<div class="modal fade" id="disHistory" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">折扣历史</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form class="form-inline search-item">
+                        <div class="input-group date">
+                            <span class="input-group-addon">日期</span>
+                            <div class="input-group form_datetime">
+                                <input type="text" class="form-control" isDefault="false"
+                                       id="createStartTime">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="input-group date">
+                            <span class="input-group-addon">至</span>
+                            <div class="input-group  form_datetime">
+                                <input type="text" class="form-control" isDefault="false"
+                                       id="createEndTime">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-default disHistoryQuery">
+                                查询
+                            </button>
+                        </div>
+                    </form>
+                    <div class="panel-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>更新时间</th>
+                                <th>折A</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--引流日报表-->
+<div class="modal fade" id="daily" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">引流日报表</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form class="form-inline search-item">
+                        <div class="input-group date">
+                            <span class="input-group-addon">日期</span>
+                            <div class="input-group form_datetime">
+                                <input type="text" class="form-control" isDefault="false" data-param="startTime"
+                                       id="createStartTime">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="input-group date">
+                            <span class="input-group-addon">至</span>
+                            <div class="input-group  form_datetime">
+                                <input type="text" class="form-control" isDefault="false" data-param="endTime"
+                                       id="createEndTime">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-default dailyQuery">
+                                查询
+                            </button>
+                        </div>
+                    </form>
+                    <div class="panel-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>更新时间</th>
+                                <th>有效注册</th>
+                                <th>折后有效注册</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../daichao/js/jquery.min.js"></script>
+<script src="../../daichao/js/cookie.js"></script>
+<script src="../../daichao/js/bootstrap.min.js"></script>
+<script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+<script src="../../js/pager.js"></script>
+<script src="../common/common.js"></script>
+<script src="js/channelSet.js"></script>
+</body>
+
+</html>

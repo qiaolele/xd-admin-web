@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../common/style.css" rel="stylesheet">
+</head>
+
+<body id="iframe-body">
+
+<div id="iframe-content" class="container-fluid">
+    <div class="panel-body">
+        <div class="panel panel-table">
+            <button type="button" data-toggle="modal" data-target="#bannerEdit" class="btn btn-default">
+                添加消息
+            </button>
+            <table>
+                <thead>
+                <tr>
+                    <th class="width10">操作</th>
+                    <th>消息名称</th>
+                    <th>消息类型</th>
+                    <th>消息内容</th>
+                    <th>推荐类型</th>
+                    <th>跳转ID和内容</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bannerEdit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">列表</h4>
+            </div>
+            <div class="modal-body panel-table">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <span class="input-group-addon">消息名称</span>
+                        <input class="form-control notEmpty" data-param="name">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">消息类型</span>
+                        <select class="form-control" data-param="type">
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">消息内容</span>
+                        <input class="form-control notEmpty" data-param="message">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">推荐类型</span>
+                        <select class="form-control" data-param="recommendType">
+                            <option value="1">产品推荐</option>
+                            <option value="2">分类推荐</option>
+                            <option value="3">跳转链接</option>
+                            <option value="4">不可点击</option>
+                        </select>
+                    </div>
+                    <div class="input-group pageUrl">
+                        <span class="input-group-addon">产品/分类ID</span>
+                        <input class="form-control notEmpty" data-param="pageUrl" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-default">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../daichao/js/jquery.min.js"></script>
+<script src="../../daichao/js/cookie.js"></script>
+<script src="../../daichao/js/bootstrap.min.js"></script>
+<script src="../../js/pager.js"></script>
+<script src="../common/common.js"></script>
+<script src="js/headLine.js" type="text/babel"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+body {
+    background: url(../images/bg.png) center top no-repeat;
+}
+
+.wrap {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -230px;
+    margin-top: -180px;
+    width: 460px;
+    height: 370px/*430px*/;
+    background: #ffffff;
+    border-radius: 8px;
+    border-top: 15px solid #ffd954;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2)
+}
+
+.wrap .input-group{
+    margin: 0 auto;
+}
+.wrap .input-group > h3 {
+    height: 60px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center
+}
+
+.wrap .input-group > label {
+    width: 80%;
+    margin: 30px 0 -20px 10%;
+    position: relative;
+}
+
+.wrap .input-group label input:nth-child(1) {
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.wrap .input-group .glyphicon {
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    z-index: 3;
+    color: #999;
+}
+
+.wrap .input-group input:focus + .glyphicon {
+    color: #ffd954;
+}
+
+.wrap .btn {
+    position: absolute;
+    width: 100%;
+    top: -5px;
+}
+
+.wrap .btn-forget {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    color: #999;
+}
+
+.wrap .btn-forget:hover {
+    color: #1aa9f8;
+}
+
+.wrap .tips {
+    visibility: hidden;
+    text-align: center;
+}
+
+.wrap .tips-show {
+    visibility: visible;
+}
+
+.wrap .tips span {
+    position: absolute;
+    left: 20%;
+    top: -10px;
+    color: red;
+}
+
+.wrap .tips-succ span {
+    color: green;
+    left: 40%;
+}
+
+.forgetPwd {
+    position: absolute;
+    right: 0;
+    color: #ccc;
+}
+
+.bg {
+    background: url(../images/bg-blur.png) center top no-repeat;
+    opacity: 0.5;
+}
+
+.bg-blur {
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.content-front {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 600px;
+    line-height: 600px;
+    text-align: center;
+}
+
+.login-top {
+    border-top: 5px solid #ffd954;
+    height: 90px;
+    font-size: 28px;
+    background-color: #f7f5f0;
+    line-height: 90px;
+    width: 100%;
+    position: absolute;
+}

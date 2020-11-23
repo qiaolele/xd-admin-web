@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet" />
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet" />
+  <link href="../common/style.css" rel="stylesheet" />
+</head>
+<style>
+  .w1 {
+    width: 100px;
+  }
+</style>
+
+<body id="iframe-body">
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>埋点数据</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <div class="input-group">
+            <span class="input-group-addon">事件</span>
+            <div class="selectWrap productName">
+              <select data-param="productName">
+                <option value="banner点击">banner点击</option>
+                <option value="贷款分类点击">贷款分类点击</option>
+                <option value="新口子分类点击">新口子分类点击</option>
+                <option value="其他广告位点击">其他广告位点击</option>
+                <!-- <option value="webview埋点">webview埋点</option> -->
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">对应id</span>
+            <div class="selectWrap productId">
+              <select data-param="productId" class="clickId">
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">日期</span>
+            <div class="input-group date">
+              <input type="text" class="form-control" data-param="beginDate" id="beginDate" />
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove"></span>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">至</span>
+            <div class="input-group date form_datetime">
+              <input type="text" class="form-control" data-param="endDate" id="endDate" />
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove"></span>
+              </span>
+            </div>
+          </div>
+          <!-- <div class="input-group">
+            <span class="input-group-addon">统计口径</span>
+            <div class="selectWrap">
+              <select data-param="count">
+                <option value="pv">PV</option>
+                <option value="uv">UV</option>
+              </select>
+            </div>
+          </div> -->
+          <div class="input-group">
+            <button type="button" class="btn btn-default check" style="margin: 0 5px">
+              <span class="glyphicon glyphicon-search"></span>查询
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-table">
+      <div class="description-count " id="description-style">
+        <div id="brokeLine" style="width:100%;height:500px;background:#fff;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../js/echarts/echarts.common.min.js"></script>
+  <script src="../../js/echarts/echarts-all.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/pointData.js" charset="UTF-8"></script>
+  <!-- <script src="../../js/echarts/brokenLine.js"></script> -->
+</body>
+
+</html>

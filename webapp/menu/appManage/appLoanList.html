@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+  <link href="../common/format.css" rel="stylesheet">
+  <style>
+    .w4 {
+      width: 120px;
+      height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 0 auto;
+    }
+
+    .row1 {
+      display: inline;
+    }
+
+    .tr {
+      text-align: right;
+    }
+
+    .transfer .transfer-right {
+      width: 52%;
+    }
+
+    .transfer .transfer-left {
+      width: 48%;
+    }
+  </style>
+</head>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>APP贷款页列表</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <div class="input-group">
+            <span class="input-group-addon">列表名称</span>
+            <input type="text" class="form-control" placeholder="列表名称" data-param="name">
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">包含产品</span>
+            <input type="text" class="form-control" placeholder="包含产品" data-param="product">
+          </div>
+          <div class="input-group">
+            <button type="button" class="btn btn-default check">
+              查询
+            </button>
+          </div>
+          <div class="input-group">
+            <button type="button" data-toggle="modal" data-target="#transferMoadal" class="btn btn-default">
+              添加列表
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-table">
+      <table>
+        <thead>
+          <tr>
+            <th class="width10">操作</th>
+            <th>列表ID</th>
+            <th>列表名称</th>
+            <th>包含产品数</th>
+            <th>包含产品</th>
+            <th>引用的场景数</th>
+            <th>更新时间</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+  </div>
+
+  <div class="modal fade editProductModal" id="transferMoadal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 1000px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">列表</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <div class="input-group" style="padding-right: 35px;">
+              <span class="input-group-addon"><span class="text-danger">*</span>列表名称</span>
+              <input class="form-control" data-param="name" style="margin-right: 15px;">
+              <span class="input-group-addon">限定在30个汉字内</span>
+            </div>
+          </div>
+          <div class="transfer">
+            <div class="transfer-left">
+              <div class="transfer-title">选择产品</div>
+              <div class="transfer-check authlist">
+                <label class="radio-inline">
+                  <input type="radio" checked name="type" value="1">
+                  <label class="radio-beauty"></label>
+                  <span>API</span>
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="type" value="2">
+                  <label class="radio-beauty"></label>
+                  <span>H5和联登</span>
+                </label>
+                <label class="checkbox-inline">
+                  <input type="checkbox" name='status' value="3">
+                  <label class="checkbox-beauty"></label>
+                  <span>已下架</span>
+                </label>
+              </div>
+              <div class="transfer-search">
+                <span class="glyphicon-search glyphicon"></span>
+                <input class="form-control">
+              </div>
+              <ul class="transfer-list authlist">
+              </ul>
+            </div>
+            <div class="transfer-right" style="">
+              <div class="transfer-title">
+                <div>已选的产品列表（<span>0</span>）</div>
+                <!-- <div>
+                  <button class="btn btn-rest">保存排序</button>
+                </div> -->
+              </div>
+              <ul class="transfer-list">
+                <li class="transfer-item row hide query-item">
+
+                  <div class="col-xs-2" style="width: 25%;" data-param="name"></div>
+                  <div class="col-xs-2 color999" style="width: 18%;" data-param="type"></div>
+                  <div class="col-xs-2 color999" data-param="status"></div>
+                  <br>
+                  <div class="col-xs-2">Android</div>
+                  <div class="col-xs-2"><input class="form-control AndIndex" type="number"></div>
+                  <div class="col-xs-2 tr">IOS</div>
+                  <div class="col-xs-2"><input class="form-control IosIndex" type="number"></div>
+                  <div class="col-xs-1">
+                    <div class="glyphicon glyphicon-remove color999"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-default">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/appLoanList.js" type="text/babel"></script>
+</body>
+
+</html>

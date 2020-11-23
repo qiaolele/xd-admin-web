@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../daichao/css/loader.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <link href="../common/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../common/viewer.min.css" />
+  </head>
+  <style scoped>
+    [v-cloak] {
+      display: none;
+    }
+
+    #iframe-content {
+      margin-top: 20px;
+    }
+
+    .col-pane {
+      margin-top: 20px;
+    }
+
+    .block {
+      margin: 20px 0;
+    }
+
+    .el-pagination.is-background .el-pager li:not(.disabled).active {
+      background-color: #ffd954;
+      color: #333;
+    }
+
+    .el-button {
+      padding: 9px 10px;
+    }
+
+    .submit {
+      color: #4d4d4d;
+      background-color: #ffd954;
+      border-color: #ffd954;
+      outline: none;
+    }
+
+    .wrap_inp {
+      display: flex;
+    }
+
+    .wrap_top {
+      margin-top: 15px;
+    }
+    .issue_pic {
+      display: flex;
+    }
+    .show_inp {
+      display: flex;
+      align-items: center;
+      width: 300px;
+    }
+
+    .show_inp_company {
+      display: flex;
+      align-items: center;
+      width: 480px;
+    }
+
+    .show_inp_width {
+      width: 600px;
+    }
+
+    .input_width_mid {
+      width: 300px;
+    }
+
+    .input_width_max {
+      width: 500px;
+    }
+
+    .input_width {
+      width: 200px;
+    }
+
+    .input_txt {
+      width: 65px;
+      text-align: end;
+      margin-right: 5px;
+    }
+
+    .input_left {
+      margin-left: 20px;
+    }
+
+    .company_btn {
+      padding: 12px 20px;
+    }
+
+    .img_size {
+      width: 170px;
+      height: 110px;
+      margin-right: 10px;
+    }
+
+    .photo_left {
+      margin-left: 40px;
+    }
+
+    .el-radio__input.is-checked .el-radio__inner {
+      border-color: #606266;
+      background: #606266;
+    }
+
+    .el-radio__input.is-checked + .el-radio__label {
+      color: #606266;
+    }
+
+    .el-dialog__body {
+      padding: 10px 20px;
+    }
+    .el-input {
+      width: 50%;
+    }
+  </style>
+
+  <body id="iframe-body">
+    <div id="iframe-content" class="container-fluid" v-cloak>
+      <ul class="nav nav-tabs" id="myTab">
+        <li role="presentation" class="active basicInfo">
+          <a href="#" role="tab" data-toggle="tab" @click="clickTabOne"
+            >未审核</a
+          >
+        </li>
+        <li role="presentation" class="orderQuery">
+          <a href="#" role="tab" data-toggle="tab" @click="clickTabTwo"
+            >审核通过</a
+          >
+        </li>
+        <li role="presentation" class="vipQuery">
+          <a href="#" role="tab" data-toggle="tab" @click="clickTabThree"
+            >审核驳回</a
+          >
+        </li>
+      </ul>
+      <!--  -->
+      <div class="col-pane col-pane-right">
+        <div class="panel panel-select">
+          <form class="form-inline">
+            <div class="input-group">
+              <span class="input-group-addon">用户手机号</span>
+              <input
+                v-model="phoneNum"
+                type="text"
+                class="form-control w150"
+                id="phone-search"
+                data-param="name"
+                placeholder="请输入手机号"
+              />
+            </div>
+            <div class="input-group">
+              <button
+                type="button"
+                class="btn btn-default queryBtn"
+                @click="phoneList"
+              >
+                查询
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--  -->
+      <div class="panel panel-table">
+        <table>
+          <thead>
+            <tr>
+              <th>用户姓名</th>
+              <th>手机号</th>
+              <th>地区</th>
+              <th>公司</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in infoList" ::key="index">
+              <td>{{item.realName}}</td>
+              <td>{{item.phone}}</td>
+              <td>{{item.qualificaAuth?item.qualificaAuth.city:''}}</td>
+              <td>{{item.qualificaAuth?item.qualificaAuth.companyName:''}}</td>
+              <td>
+                <button class="btn setProduct" @click="showDigo(item.id)">
+                  查看
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--分页-->
+        <div class="block" v-show="totalNum>0">
+          <el-pagination
+            background
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-size="20"
+            layout="total, prev, pager, next,jumper"
+            :total="totalNum"
+          >
+          </el-pagination>
+        </div>
+        <!-- 弹窗 -->
+        <el-dialog
+          title="基本资料"
+          width="84%"
+          :visible.sync="dialogFormVisible"
+        >
+          <div class="digo_wrap" id="jqhtml">
+            <div class="wrap_inp">
+              <div class="show_inp">
+                <span class="input_txt">姓名:</span>
+                <el-input
+                  class="input_width"
+                  v-model="name"
+                  placeholder="请输入姓名"
+                ></el-input>
+              </div>
+              <div class="show_inp input_left">
+                <span class="input_txt">所在地区:</span>
+                <el-input
+                  class="input_width"
+                  v-model="city"
+                  placeholder="请输入所在地区"
+                ></el-input>
+              </div>
+              <div class="show_inp input_left">
+                <span class="input_txt">手机号码:</span>
+                <el-input
+                  class="input_width"
+                  v-model="phone"
+                  placeholder="请输入手机号码"
+                ></el-input>
+              </div>
+            </div>
+            <div class="wrap_inp wrap_top">
+              <div class="show_inp">
+                <span class="input_txt">公司类型:</span>
+                <el-input
+                  class="input_width"
+                  v-model="companyType"
+                  placeholder="请输入公司类型"
+                ></el-input>
+              </div>
+              <div class="show_inp_company input_left">
+                <span class="input_txt">公司名称:</span>
+                <el-input
+                  class="input_width_mid"
+                  v-model="companyName"
+                  placeholder="请输入公司名称"
+                ></el-input>
+                <el-button class="company_btn" type="primary" @click="searchCom"
+                  >企查查</el-button
+                >
+              </div>
+            </div>
+            <div class="wrap_inp wrap_top">
+              <div class="show_inp show_inp_width">
+                <span class="input_txt">公司地址:</span>
+                <el-input
+                  class="input_width_max"
+                  v-model="companyAdress"
+                  placeholder="请输入公司地址"
+                ></el-input>
+              </div>
+            </div>
+            <div class="wrap_inp wrap_top">
+              <div>
+                <p>身份证照片</p>
+                <div>
+                  <img
+                    class="img_size"
+                    v-for="(item,index) in idCard"
+                    :key="index"
+                    :data-original="item"
+                    :src="item"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="photo_left">
+                <p>活体照片</p>
+                <div>
+                  <img
+                    class="img_size"
+                    :src="faceImage"
+                    :data-original="faceImage"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="wrap_top">
+              <p>资质证明</p>
+              <div class="issue_pic">
+                <img
+                  class="img_size"
+                  v-for="(item,index) in prove"
+                  :key="index"
+                  :src="item"
+                  :data-original="item"
+                  alt=""
+                />
+                <video
+                  v-if="videoUrl"
+                  width="170"
+                  height="110"
+                  :src="videoUrl"
+                  controls="controls"
+                >
+                  您的浏览器不支持 video 标签。
+                </video>
+              </div>
+            </div>
+            <div class="wrap_top" v-show="chooseStatus==1">
+              <span style="margin-right: 20px">审核结果</span>
+              <el-radio-group
+                style="margin-top: 4px"
+                v-model="radio"
+                fill="“red"
+              >
+                <el-radio :label="2">通过</el-radio>
+                <el-radio :label="3">驳回</el-radio>
+              </el-radio-group>
+            </div>
+            <div
+              class="wrap_top"
+              v-show="radio==3&&chooseStatus!=2 || chooseStatus==3"
+            >
+              <span style="margin-right: 20px">驳回原因</span>
+              <span v-if="chooseStatus==3">{{remark}}</span>
+              <el-input
+                v-model="remark"
+                placeholder="请输入内容"
+                v-else
+              ></el-input>
+            </div>
+          </div>
+          <div slot="footer" class="dialog-footer" v-show="chooseStatus==1">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button class="submit" @click="commitBtn">提交</el-button>
+          </div>
+        </el-dialog>
+      </div>
+    </div>
+
+    <script src="../../daichao/js/jquery.min.js"></script>
+    <script src="../../daichao/js/cookie.js"></script>
+    <script src="../../daichao/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="../common/viewer-jquery.min.js"
+    ></script>
+    <script src="../common/viewer.min.js"></script>
+
+    <script src="../common/common.js"></script>
+    <script src="./js/creditReview.js"></script>
+  </body>
+</html>

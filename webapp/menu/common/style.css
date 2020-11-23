@@ -1,0 +1,466 @@
+ul li {
+  list-style: none;
+}
+
+.text-primary {
+  color: #34495e;
+}
+
+.text-primary-2 {
+  color: #9b59b6;
+}
+
+.text-info {
+  color: #3498db;
+}
+
+.text-success {
+  color: #62cb31;
+}
+
+.text-warning {
+  color: #ffb606;
+}
+
+.text-danger {
+  color: #e74c3c;
+}
+
+.text-white {
+  color: #fff;
+}
+
+/***** upload *****/
+
+.uploadModals,
+.postponeModals {
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  text-align: center;
+  line-height: 300px;
+  cursor: pointer;
+}
+
+.uploadModals img,
+.postponeModals img {
+  width: 100%;
+}
+
+.bootstrap-select .filter-option {
+  color: #555;
+  /*width: 100%;*/
+}
+
+.bs-actionsbox .btn-group button {
+  width: 48%;
+}
+
+.borderActive {
+  border: 2px solid #ffd954;
+}
+
+.idPic {
+  max-height: 130px;
+  max-width: 200px;
+}
+
+.required-input {
+  border: 1px solid red !important;
+  border-right: 1px solid red !important;
+}
+
+.required-div {
+  border: 2px solid #7D93AC !important;
+  padding: 2px;
+}
+
+.required-input::-webkit-input-placeholder {
+  color: red;
+}
+
+.modal .form-inline>.input-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.modal .form-inline .input-group .input-group-addon {
+  width: 15%
+}
+
+.upload-file {
+  margin: 15px 0;
+}
+
+.upload-list {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.listWrap {
+  flex-wrap: wrap
+}
+
+.upload-list .upload-list-item {
+  width: 25%;
+  height: 120px;
+  text-align: center;
+}
+
+.upload-header {
+  height: 80px;
+  width: 80px;
+  line-height: 80px;
+  border: 1px solid #eee;
+  margin: 0 auto;
+}
+
+.upload-header .closeImg {
+  display: inline-block;
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+
+.upload-header:hover .closeImg {
+  display: block;
+}
+
+.upload-header img {
+  height: 80px;
+  cursor: pointer;
+}
+
+.closeImg .glyphicon {
+  top: -40px;
+  right: -70px;
+}
+
+.upload-footer {
+  margin-top: 5px;
+}
+
+.noMarginBottom .input-group {
+  margin: 0 !important;
+}
+
+.modal-body .modal-title {
+  text-align: center;
+}
+
+.input-groups {
+  display: flex;
+  justify-content: space-between;
+  line-height: 32px;
+}
+
+.input-groups>div {
+  text-align: center;
+}
+
+.input-groups .form-control {
+  height: 32px;
+  line-height: 32px;
+  width: 40%;
+}
+
+.input-groups input {
+  min-width: 70px;
+}
+
+.judgeStyle {
+  border: 1px solid red;
+}
+
+.modal .search-item>.input-group {
+  width: 150px;
+}
+
+.modal .search-item>.input-group.date {
+  width: 250px;
+}
+
+.width100 {
+  width: 100% !important;
+}
+
+.width70 {
+  width: 70% !important;
+}
+
+.width60 {
+  width: 60% !important;
+}
+
+.width50 {
+  width: 50% !important;
+}
+
+.width45 {
+  width: 45% !important;
+}
+
+.width40 {
+  width: 40% !important;
+  ;
+}
+
+.width35 {
+  width: 35% !important;
+  ;
+}
+
+.width30 {
+  width: 30% !important;
+  ;
+}
+
+.width25 {
+  width: 25%;
+   !important;
+}
+
+.width20 {
+  width: 20% !important;
+  ;
+}
+
+.width10 {
+  width: 10% !important;
+  ;
+}
+
+.tab-pane {
+  max-height: 600px;
+  overflow: auto;
+}
+
+.radioWrap {
+  height: 30px;
+  line-height: 30px;
+}
+
+.radioCnt {
+  display: inline-block;
+}
+
+.radioStyle {
+  vertical-align: middle !important;
+  margin-top: 9px !important;
+}
+
+.imgWrap {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.w5 {
+  width: 500px !important;
+}
+
+.w49 {
+  width: 49% !important;
+}
+
+.maxWidth {
+  max-width: 1042px !important;
+}
+
+.lh4 {
+  line-height: 40px !important;
+}
+
+.labelStyle {
+  margin-right: 5px !important;
+  float: left !important;
+}
+
+.staging,
+.editProduct.modal-footer,
+.addNewProduct {
+  display: none;
+}
+
+.editProduct.modal-footer.active {
+  display: block !important;
+}
+
+.addNewProduct.active {
+  display: flex;
+  justify-content: space-around
+}
+
+#editProduct .loanLimits .active {
+  display: table !important;
+}
+
+.bankList {
+  display: none !important;
+}
+
+#bankList .active {
+  display: flex !important;
+}
+
+.inlineBlock {
+  display: inline-block !important;
+}
+
+.width300 {
+  width: 300px !important;
+}
+
+.hAuto {
+  height: auto !important;
+}
+
+.transfer {
+  display: flex;
+
+}
+
+.transfer>div {
+  width: 50%;
+  padding: 0 15px;
+}
+
+.transfer .transfer-left {
+  border-right: 1px solid #D5DBE1;
+}
+
+.transfer-check {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.transfer-search .glyphicon {
+  top: 30px;
+  left: 10px;
+}
+
+.transfer-search .form-control {
+  text-indent: 20px;
+}
+
+.transfer-list {
+  padding: 0;
+  margin-top: 20px;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.transfer-list .transfer-item {
+  margin: 10px 0;
+}
+
+.transfer-list .transfer-item .col-xs-2 {
+  padding: 0;
+  margin: 0 5px;
+}
+
+.transfer-item .col-xs-4 .checkbox-inline {
+  white-space: nowrap;
+}
+
+.transfer-item .col-xs-4 span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transfer-list .transfer-item .col-xs-4:first-child,
+.transfer-list .transfer-item .col-xs-2:first-child {
+  padding-left: 0;
+}
+
+.transfer .transfer-right {
+  padding-right: 0;
+}
+
+.transfer-right .transfer-list {
+  max-height: 600px;
+}
+
+.transfer-right .transfer-list .transfer-item {
+  line-height: 40px;
+}
+
+.transfer-right .glyphicon-remove {
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.transfer-title {
+  line-height: 40px;
+}
+
+.transfer-right .transfer-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgStyle {
+  width: 295px;
+  height: 174px;
+}
+
+.closeBtn {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #95A3A3;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 30px;
+}
+
+.con-item {
+  display: flex;
+  justify-content: space-around;
+  line-height: 40px;
+  margin: 10px;
+}
+
+.editTitle {
+  display: flex;
+  line-height: 40px;
+  justify-content: space-around;
+}
+
+.textAlignLeft {
+  text-align: left;
+   !important;
+}
+
+.input-group-addon span {
+  cursor: text;
+   !important;
+}
+
+.marginR15 {
+  margin-right: 15px;
+}
+
+.paddingR35 {
+  padding-right: 35px;
+}
+
+.marginR35 {
+  margin-right: 35px;
+}
+
+.color999 {
+  color: #999999;
+}

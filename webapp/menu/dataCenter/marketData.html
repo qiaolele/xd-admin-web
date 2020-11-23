@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  .w1 {
+    width: 100px;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>市场数据</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <!-- <div class="input-group">
+            <span class="input-group-addon">渠道</span>
+            <input type="text" class="form-control" placeholder="请输入机构名称" data-param="channel">
+          </div> -->
+          <div class="input-group">
+            <span class="input-group-addon">时间</span>
+            <div class="input-group date  form_datetime">
+              <input type="text" class="form-control" isDefault="false" data-param="startTime">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove"></span>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">至</span>
+            <div class="input-group date  form_datetime">
+              <input type="text" class="form-control" isDefault="false" data-param="endTime">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove"></span>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <button type="button" class="btn btn-default check" style="margin: 0 5px">
+              <span class="glyphicon glyphicon-search"></span>查询
+            </button>
+          </div>
+          <!-- <div class="input-group">
+            <button type="button" class="btn btn-default exportBtn">
+              <span class="glyphicon glyphicon-save"></span>导出
+            </button>
+          </div> -->
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-table">
+      <div class="description-count " id="description-style">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>渠道</th>
+            <th>App登录</th>
+            <th>全新登录</th>
+            <th>充值人数</th>
+            <th>认证人数</th>
+            <th>充值金额</th>
+            <th>抢单单数</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/marketData.js" charset="UTF-8"></script>
+</body>
+
+</html>

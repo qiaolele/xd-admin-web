@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  .w5 {
+    width: 500px !important;
+  }
+
+  .labelStyle {
+    margin-right: 5px;
+    float: left;
+  }
+
+  .lh {
+    line-height: 40px;
+  }
+
+  #myModal label {
+    font-weight: normal !important;
+  }
+
+  .inputStyle {
+    float: none !important;
+    width: 120px !important;
+  }
+
+  .addSelect {
+    width: 40px !important;
+    margin-left: 20px;
+  }
+
+
+  .editProductModal .form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .editProductModal .info {
+    width: calc(100% - 180px);
+    color: rgba(153, 153, 153, 1);
+    border: none;
+    display: inline;
+    float: left;
+    float: right;
+    position: absolute;
+    line-height: 80px;
+  }
+
+  .addAuthModal {
+    margin-left: 20px;
+  }
+
+  .editProductModal .form-inline .input-group .selectWrap select {
+    border: 1px solid #e6e6e6;
+  }
+
+  .editProductModal .form-inline .input-group .selectWrap {
+    border: none;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel panel-table">
+      <h4>推荐贷款 <button class="btn btn-default addAuthModal">添加</button></h4>
+      <table>
+        <thead>
+          <tr>
+            <th>产品名称</th>
+            <th>状态</th>
+            <th>产品类型</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center">
+    </div>
+    <!-- 编辑、添加认证项 -->
+    <div class="modal fade editProductModal" id="editProduct" tabindex="-1" role="dialog" data-id="">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加推荐产品</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inline form" data-param="rsaKeys">
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>产品类型</span>
+                <div class="selectWrap">
+                  <select class="form-control type" data-param="type">
+                    <option value="1">Api</option>
+                    <option value="2">H5</option>
+                    <option value="3">联登</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>选择产品</span>
+                <div class="selectWrap">
+                  <select class="form-control name" data-param="name"></select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-default">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/recommendLoan.js" charset="UTF-8"></script>
+</body>
+
+</html>

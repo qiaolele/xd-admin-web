@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+  <link href="../common/format.css" rel="stylesheet">
+</head>
+<style>
+  .imgWrap img {
+    width: auto;
+    height: 100px;
+    border-radius: 5%;
+    margin-top: -17px;
+    margin-left: -12px
+  }
+
+  #myModal label {
+    font-weight: normal;
+  }
+
+  #myModal .textarea .form-control {
+    float: none;
+    width: 55%;
+    margin-right: 15px;
+  }
+
+  #myModal .box {
+    position: relative;
+    top: 6px;
+  }
+
+  #myModal .box label {
+    margin-right: 5px;
+  }
+
+
+  .fileUpload {
+    line-height: 80px;
+  }
+
+  /* 弹窗样式 */
+  #myModal .form-inline .input-group .fileUpload {
+    display: inline-block;
+    width: 40%;
+    padding: 4px 12px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+  }
+
+  #myModal .fileUpload img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  #myModal .box1 {
+    clear: both;
+    width: 70%;
+    display: inline-block;
+  }
+
+  .box1 .item {
+    margin-bottom: 10px;
+  }
+
+  .glyphicon {
+    margin: 0 10px;
+  }
+
+  .item {
+    display: inline-block;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>广告管理</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <div class="input-group">
+            <span class="input-group-addon">类别</span>
+            <div class="selectWrap">
+              <select data-param="type">
+                <option value="1">推荐</option>
+                <option value="2">热门</option>
+                <option value="3">最新</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">类别</span>
+            <div class="selectWrap">
+              <select data-param="status">
+                <option value="1">上架</option>
+                <option value="0">下架</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <button type="button" class="btn btn-default queryBtn">
+              查询
+            </button>
+          </div>
+          <div class="input-group">
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default addBtn">
+              添加游戏
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="panel panel-table baseTable">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>游戏名称</th>
+              <th>logo</th>
+              <th>简介</th>
+              <th>基础玩家数量</th>
+              <th>标签</th>
+              <th>所属分类</th>
+              <th>状态</th>
+              <th>排序</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+        <ul class="pagination"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">添加游戏</h4>
+        </div>
+        <div class="modal-body panel-table">
+          <div class="form-inline">
+            <div class="input-group verify">
+              <span class="input-group-addon">游戏名称</span>
+              <input type="text" class="form-control name" data-param="name" placeholder="请填写名称">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">游戏logo</span>
+              <div class="form-control fileUpload" data-param="icon">
+                点击上传
+              </div>
+              <input type="file" data-param="icon" class="hidden file notEmpty" accept="image/png,image/jpeg"
+                data-target="file">
+              <input type="file" class="hidden file" id="fileload" accept="image/png,image/jpeg">
+            </div>
+            <div class="input-group textarea">
+              <span class="input-group-addon">游戏介绍</span>
+              <textarea class="form-control" id="introduction" data-param="introduction"></textarea>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">下载链接</span>
+              <input type="text" class="form-control url" data-param="url" placeholder="请输入">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">玩家数量</span>
+              <input type="text" class="form-control userNum" data-param="userNum" placeholder="请输入">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">标签</span>
+              <input type="text" class="form-control tag" data-param="tag" placeholder="请输入">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">所属分类</span>
+              <div class="box" id="isHot">
+                <label><input class="icheck" type="radio" name="type" value="1" checked />&nbsp;&nbsp;推荐</label>
+                <label><input class="icheck" type="radio" name="type" value="2" />&nbsp;&nbsp;热门</label>
+                <label><input class="icheck" type="radio" name="type" value="3" />&nbsp;&nbsp;最新</label>
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">状态</span>
+              <div class="box">
+                <label><input class="icheck" type="radio" name="status" value="1" checked />&nbsp;&nbsp;上架</label>
+                <label><input class="icheck" type="radio" name="status" value="0" />&nbsp;&nbsp;下架</label>
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">平台</span>
+              <select class="form-control os" data-param="os">
+                <option value="3">全部</option>
+                <option value="1">Android</option>
+                <option value="2">Ios</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-default affirmBtn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 400px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          <h4>确认<span></span>?</h4>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <button type="button" class="btn btn-default updateStatusBtn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          <h4>确认删除?</h4>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <button type="button" class="btn btn-default deleteConfirm">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/gameRecommManage.js"></script>
+</body>
+
+</html>

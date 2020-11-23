@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  .w1 {
+    width: 100px;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>支付订单明细</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <div class="input-group">
+            <span class="input-group-addon">手机号</span>
+            <div class="input-group">
+              <input type="text" class="form-control" isDefault="false" data-param="mobile">
+            </div>
+          </div>
+          <div class="input-group">
+            <button type="button" class="btn btn-default check" style="margin: 0 5px">
+              <span class="glyphicon glyphicon-search"></span>查询
+            </button>
+          </div>
+          <!-- <div class="input-group">
+            <button type="button" class="btn btn-default exportBtn">
+              <span class="glyphicon glyphicon-save"></span>导出
+            </button>
+          </div> -->
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-table">
+      <div class="description-count " id="description-style">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>用户ID</th>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th>支付金额</th>
+            <th>vip订单号</th>
+            <th>支付时间</th>
+            <th>订单状态</th>
+            <!-- <th>更新时间</th> -->
+            <!-- <th>操作人</th>
+            <th>操作</th> -->
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/payOrderData.js" charset="UTF-8"></script>
+</body>
+
+</html>

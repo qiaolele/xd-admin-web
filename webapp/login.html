@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="daichao/css/loader.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bg bg-blur"></div>
+    <header class="login-top">
+        <div style="margin-left: 15%;">
+            <img src="daichao/images/common/logo@2x.png" alt="" width="150">
+            <span class="title" style="color: #666;margin-right: 5px"></span>|
+            <span style="color: #666;margin-left: 5px">登录</span>
+        </div>
+    </header>
+    <div class="wrap">
+        <div class="row">
+            <div class="input-group">
+
+                <h3>
+                    登录
+                </h3>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id='userName' placeholder="用户名">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            </div>
+            <div class="input-group">
+                <input type="password" class="form-control" id='userPwd' placeholder="密码">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </div>
+            <div class="input-group hidden code" style="text-align: right;">
+                <input type="text" class="form-control" id='code' placeholder="请输入" style="width: 75%;">
+                <button class="btn recode" style="height: 40px;">重新获取</button>
+            </div>
+            <div class="input-group loginPrompt" id='loginPrompt'>
+
+            </div>
+            <div class="input-group tips">
+            </div>
+            <div class="input-group">
+                <button class="btn btn-default btn-lg" style="width: 100%">登陆</button>
+            </div>
+        </div>
+    </div>
+    <div id="loaders" class="loaders"></div>
+    <script>
+        window.onload = function () {
+            var ua = navigator.userAgent.toLocaleLowerCase(),
+                $loginPrompt = document.getElementById("loginPrompt");
+            if (ua.indexOf('chrome') <= 0) {
+                $loginPrompt.innerHTML = "<span>请使用Chrome浏览器登录</span>";
+            } else {
+                if (ua.indexOf('edge') >= 0) {
+                    $loginPrompt.innerHTML = "<span>请使用Chrome浏览器登录</span>"
+                    return
+                }
+                $loginPrompt.innerHTML = "";
+            }
+        }
+    </script>
+    <script src="daichao/js/jquery.min.js"></script>
+    <script src="daichao/js/cookie.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

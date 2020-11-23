@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金币配置</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<style scoped>
+  #gold-config {
+    padding: 20px 15px;
+  }
+
+  .add_btn {
+    background: #ffd954;
+    border: 1px solid #ffd954;
+    color: #4d4d4d;
+  }
+
+  .el-button:focus,
+  .el-button:hover {
+    color: #4d4d4d;
+  }
+
+  .box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+  }
+
+  .el-dialog__body {
+    padding: 10px 20px 70px;
+  }
+
+  .info_name {
+    width: 70px;
+    display: inline-block;
+  }
+
+  .box_top {
+    margin-top: 20px;
+  }
+
+  .img_input .el-input--small {
+    display: inline-block;
+    width: 35%;
+  }
+</style>
+
+<body>
+  <div id="gold-config">
+    <el-button class="add_btn" @click="addGold">添加</el-button>
+    <!-- <el-button class="add_btn" @click="addUserGold">添加金币</el-button> -->
+    <div class="box">
+      <el-table stripe :data="goldList" border style="width: 580px">
+        <el-table-column align="center" label="序号" width="80">
+          <template slot-scope="scope">
+            <div>
+              {{scope.$index+1}}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="money" align="center" label="价格" width="150">
+        </el-table-column>
+        <el-table-column prop="gold" align="center" label="对应金币" width="150">
+        </el-table-column>
+        <el-table-column align="center" label="操作" width="200">
+          <template slot-scope="scope">
+            <el-button size="mini" class="add_btn" @click="showDialog(scope.row.id)">编辑</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <!-- 弹窗 -->
+    <el-dialog title="添加/编辑广告位" :visible.sync="dialogVisible" width="45%">
+      <div>
+        <div class="img_input">
+          <span class="info_name">价格</span>
+          <el-input v-model="priceInput" size="small" placeholder="请输入价格" clearable></el-input>
+        </div>
+        <div class="box_top img_input">
+          <span class="info_name">对应金币</span>
+          <el-input v-model="goldInput" size="small" placeholder="请输入金币" clearable></el-input>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="commitBtn">保 存</el-button>
+      </span>
+    </el-dialog>
+    <!-- 添加金币弹窗 -->
+    <el-dialog title="添加金币" :visible.sync="addGoldToast" width="45%">
+      <div>
+        <div class="img_input">
+          <span class="info_name">手机号</span>
+          <el-input v-model="phoneInput" size="small" placeholder="请输入手机号" clearable></el-input>
+        </div>
+        <div class="box_top img_input">
+          <span class="info_name">金币</span>
+          <el-input v-model="goldNumInput" size="small" placeholder="请输入金币" clearable></el-input>
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button size="small" @click="addGoldToast = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="addGoldCommit">保 存</el-button>
+      </span>
+    </el-dialog>
+  </div>
+  <script src="./js/goldConfig.js"></script>
+</body>
+
+</html>

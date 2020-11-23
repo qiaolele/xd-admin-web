@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>广告位管理</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<style scoped>
+  #advert-manage {
+    padding: 20px 15px;
+  }
+
+  .add_btn {
+    background: #ffd954;
+    border: 1px solid #ffd954;
+    color: #4d4d4d;
+  }
+
+  .el-button:focus,
+  .el-button:hover {
+    /* background: #ffd954;
+    border: 1px solid #ffd954; */
+    color: #4d4d4d;
+  }
+
+  .box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+  }
+
+  .show_img {
+    width: 260px;
+    height: 70px;
+  }
+
+  .el-dialog__body {
+    padding: 10px 20px;
+  }
+
+  .info_name {
+    width: 70px;
+    display: inline-block;
+  }
+
+  .box_top {
+    margin-top: 10px;
+  }
+
+  .img_input .el-input--small {
+    display: inline-block;
+    width: 60%;
+  }
+
+  .box_flex {
+    display: flex;
+  }
+
+  /*  */
+  .avatar-uploader {
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-uploader .el-upload:hover {
+    border-color: #409eff;
+  }
+
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+    border: 1px solid #DCDFE6;
+    margin-left: 6px;
+  }
+</style>
+
+<body>
+  <div id="advert-manage">
+    <el-button class="add_btn" @click="addAdver('add')">添加</el-button>
+    <div class="box">
+      <el-table :data="tableData" border style="width: 840px;">
+        <!-- <el-table-column prop="id" align="center" label="序号" width="80">
+        </el-table-column> -->
+        <el-table-column align="center" label="序号" width="80">
+          <template slot-scope="scope">
+            <div>
+              {{scope.$index+1}}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column align="center" label="类型" width="130">
+          <template slot-scope="scope">
+            <div>
+              {{scope.row.type==1?"广告位":"banner"}}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="img" align="center" label="图片" width="280">
+          <template slot-scope="scope">
+            <div>
+              <img class="show_img" :src="scope.row.image" alt="" />
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="name" align="center" label="位置" width="150">
+        </el-table-column>
+        <el-table-column align="center" label="操作" width="200">
+          <template slot-scope="scope">
+            <el-button size="mini" class="add_btn" @click="changeStatus(scope.row.id,scope.row.status)">
+              {{scope.row.status==1?'上架中':'已下架'}}
+            </el-button>
+            <el-button size="mini" class="add_btn" @click="showDialog(scope.row.id,'emit')">编辑</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <!-- 弹窗 -->
+    <el-dialog title="添加/编辑广告位" :visible.sync="dialogVisible" width="60%">
+      <div>
+        <div>
+          <span class="info_name">所属类别</span>
+          <el-select v-model="valueType" size="small" placeholder="请选择">
+            <el-option v-for="item in typeOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div class="box_top">
+          <span class="info_name">位置</span>
+          <el-select v-model="valuePosition" size="small" placeholder="请选择">
+            <el-option v-for="item in positionOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div class="box_top img_input">
+          <span class="info_name">链接</span>
+          <el-input v-model="imgInput" size="small" placeholder="请输入内容" clearable></el-input>
+        </div>
+        <div class="box_top img_input box_flex">
+          <span class="info_name">图片</span>
+          <img class="avatar el-icon-plus avatar-uploader-icon" @click="upLoad" :src="imageUrl" alt="">
+          <input type="file" ref="avatarInput" accept="image/png imgge/jpg" @change="uploadImg($event)"
+            style="display:none">
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="commitBtn">保 存</el-button>
+      </span>
+    </el-dialog>
+  </div>
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="./js/adverManage.js"></script>
+</body>
+
+</html>

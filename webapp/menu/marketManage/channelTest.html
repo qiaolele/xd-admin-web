@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/easyTree/easyTree.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../../daichao/css/icheck.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  #modal-childChannel .skinWrap,
+  #modalTestData .skinWrap {
+    width: 100%;
+    min-height: 180px;
+    border: 1px solid #e6e6e6;
+    padding: 8px;
+  }
+
+  #modal-childChannel .skin,
+  #modal-childChannel .skin {
+    width: 100%;
+    min-height: 130px;
+    max-height: 320px;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #modal-childChannel .imgWrap,
+  #modalTestData .imgWrap {
+    width: 100%;
+    height: 178px;
+    border: 1px solid #e6e6e6;
+    padding: 3px 0;
+  }
+
+  #modal-childChannel .skin>.img,
+  #modalTestData .skin>.img {
+    width: 104px;
+    min-height: 178px;
+    max-height: 320px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  #modal-childChannel .imgWrap img,
+  #modalTestData .imgWrap img {
+    width: auto;
+    max-width: 100%;
+    margin: auto;
+    height: auto;
+    max-height: 100%;
+    display: block;
+    border-radius: 3%;
+  }
+
+  #modal-childChannel .deleteBtn,
+  #modalTestData .deleteBtn {
+    cursor: pointer;
+    color: #999999;
+    float: right;
+    border: 1px solid #e6e6e6;
+    border-radius: 5%;
+    margin-top: 5px;
+    height: 20px;
+    width: 34px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  #modal-childChannel .index,
+  #modalTestData .index {
+    float: left;
+    margin-top: 5px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #6A6C6F;
+  }
+
+  #iframe-content thead th {
+    border-bottom: none;
+  }
+
+  #modal-skin .img {
+    display: inline-block;
+    height: 130px;
+    width: 30%;
+    margin-left: 10px;
+    position: relative;
+    margin-bottom: 15px;
+  }
+
+  #modal-skin .imgWrap {
+    width: 100%;
+    font-size: 32px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #modal-skin .imgWrap img {
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: -7px;
+  }
+
+  #modal-skin .mask {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    line-height: 100px;
+    background-color: black;
+    opacity: 0.4;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  #modal-skin .index {
+    font-size: 12px;
+    color: #6A6C6F;
+  }
+
+  .preBtn {
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+    border-radius: 3%;
+    float: right;
+    font-size: 12px;
+  }
+
+  .preWrap {
+    position: absolute;
+    width: 100%;
+    height: 93%;
+    top: 30px;
+  }
+
+  .preImg {
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .preWrap img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .padding3 {
+    padding: 0 3px;
+  }
+
+  .panel-table table {
+    margin-bottom: 20px;
+  }
+</style>
+
+<body id="iframe-body">
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>渠道自动测试</h4>
+    </div>
+    <div class="panel-body">
+      <div class="row row-body">
+        <div>
+          <div class="col-pane col-pane-right">
+            <div class="panel panel-select">
+              <form class="form-inline">
+                <div class="input-group">
+                  <span class="input-group-addon">时间</span>
+                  <div class="input-group date  form_datetime">
+                    <input type="text" class="form-control" isDefault="false" data-param="startTime">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-addon">至</span>
+                  <div class="input-group date  form_datetime">
+                    <input type="text" class="form-control" isDefault="false" data-param="endTime">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default check" style="margin: 0 5px">
+                    <span class="glyphicon glyphicon-search"></span>查询
+                  </button>
+                </div>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default testExportBtn">
+                    <span class="glyphicon glyphicon-save"></span>导出
+                  </button>
+                </div>
+                <button type="button" class="btn btn-default closeTableBtn" style="margin-bottom:10px;">关闭
+                </button>
+              </form>
+            </div>
+            <div class="input-group">
+              <button type="button" class="btn btn-default" id="query"><span
+                  class="glyphicon glyphicon-search"></span>查询
+              </button>
+            </div>
+            </form>
+          </div>
+          <div class="panel panel-table parentTable">
+            <table style="margin-top: 10px;">
+              <thead>
+                <tr>
+                  <th>期数</th>
+                  <th>皮肤样式</th>
+                  <th>皮肤id</th>
+                  <th>测试时间</th>
+                  <th>测试时长</th>
+                  <th>页面访问UV</th>
+                  <th>注册人数</th>
+                  <th>注册转换率</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- <td colspan="8">暂无数据</td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/js/jquery.qrcode.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/channelManage.js"></script>
+</body>
+
+</html>

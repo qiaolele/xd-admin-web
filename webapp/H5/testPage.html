@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv=”X-UA-Compatible” content=”IE=edge,chrome=1″/>
+    <title>还款测试h5</title>
+</head>
+<style>
+    body,html {
+        margin: 0;
+        padding: 0;
+    }
+    .item {
+        font-size: 0.3rem;
+        width: 1.5rem;
+        display: inline-block;
+        text-align: center;
+    }
+    .itemBox {
+        height: 1rem;
+        line-height: 1rem;
+        border-bottom: 1px solid #ccc;
+        font-size: 0.3rem;
+    }
+    input{
+        border: none;
+        font-size: 0.3rem;
+        width: 70%;
+    }
+    .getYZM{
+        width: 1rem;
+        height: 0.5rem;
+        display: inline-block;
+        text-align: center;
+        line-height: 0.5rem;
+        background-color: #35FFA6;
+        color: #fff;
+    }
+    .butWrap{
+        text-align: center;
+    }
+    .butWrap span{
+        width: 7rem;
+        height: 0.7rem;
+        background-color: #3D8CFF;
+        color: #fff;
+        display: inline-block;
+        margin-top: 0.1rem;
+        line-height: 0.7rem;
+        border-radius: 0.1rem;
+    }
+    .tips{
+        font-size: 0.2rem;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+    .wrap{
+        position: relative;
+    }
+    .hint{
+        font-size: 0.2rem;
+        position: absolute;
+        display: inline-block;
+        width: 1rem;
+        height: 0.5rem;
+        line-height: 0.5rem;
+        text-align: center;
+        background-color: black;
+        opacity: 0.5;
+        color: #fff;
+        top: 2.5rem;
+        left: 50%;
+        margin-left: -0.5rem;
+        display: none;
+    }
+    .animation{
+        display: block;
+        animation: animation ease 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    @keyframes animation{
+        0%{
+            opacity: 0;
+            top:2rem;
+        }
+        100%{
+            opacity: 0.5;
+            top:2.5rem;
+        }
+    }
+</style>
+<body>
+    <div class="wrap">
+        <span class="hint">已确认</span>
+        <div class="itemBox">
+            <span class="item">支付金额</span>
+            <input type="text" value="123" style="color: red;">元
+        </div>
+        <div class="itemBox">
+            <span class="item">银行卡号</span>
+            <input type="text" value="交通银行(6319)">
+        </div>
+        <div class="itemBox">
+            <span class="item">姓名</span>
+            <input type="text" value="李兴">
+        </div>
+        <div class="itemBox">
+            <span class="item">身份证号</span>
+            <input type="text" value="330124199201264218" id="id">
+        </div>
+        <div class="itemBox">
+            <span class="item">手机号</span>
+            <input type="text" value="18668056897" id="phone">
+        </div>
+        <div class="itemBox">
+            <span class="item">验证码</span>
+            <input type="text" placeholder="验证码已发送，请输入" style="width: 60%;">
+            <span class="getYZM">获取</span>
+        </div>
+        <div class="itemBox butWrap">
+            <span>确认支付</span>
+        </div>
+        <div class="itemBox">
+            <span class="tips">银行卡不对？您可以通过【我的-银行卡认证】进行更换</span>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+    <script>
+      window.onorientationchange = window.onresize = window.onload = function () {
+        var c = document.getElementsByTagName("html");
+        var d = getViewportSize().width;
+        if (d > 750) {
+          d = 750
+        } else {
+          if (d < 320) {
+            d = 320
+          }
+        }
+        c[0].style.fontSize = (d / 750) * 625 + "%";
+      };
+      function getViewportSize() {
+        return {
+          width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+          height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        }
+      };
+      $('body').on('click','.butWrap',function () {
+        $('.hint').addClass('animation');
+        setTimeout(function () {
+          $('.hint').removeClass('animation')
+        },1100)
+      })
+    </script>
+</body>
+</html>

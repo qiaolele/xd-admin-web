@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  .w5 {
+    width: 500px !important;
+  }
+
+  .labelStyle {
+    margin-right: 5px;
+    float: left;
+  }
+
+  .lh {
+    line-height: 40px;
+  }
+
+  #myModal label {
+    font-weight: normal !important;
+  }
+
+  .inputStyle {
+    float: none !important;
+    width: 120px !important;
+  }
+
+  .addSelect {
+    width: 40px !important;
+    margin-left: 20px;
+  }
+
+  #iframe-content .selectWrap {
+    display: inline-block;
+    height: 40px;
+  }
+
+  /* 弹窗样式 */
+  .editProductModal .form-inline .input-group .fileUpload1,
+  .editProductModal .form-inline .input-group .fileUpload2 {
+    display: inline-block;
+    width: 40%;
+    padding: 4px 12px;
+    height: 80px;
+    line-height: 80px;
+  }
+
+  .editProductModal .form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .editProductModal .fileUpload1 img,
+  .editProductModal .fileUpload2 img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .editProductModal .info {
+    width: calc(100% - 180px);
+    color: rgba(153, 153, 153, 1);
+    border: none;
+    display: inline;
+    float: left;
+    float: right;
+    position: absolute;
+    line-height: 80px;
+  }
+
+  .addAuthModal {
+    margin-left: 20px;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel panel-table">
+      <h4>包管理 <button class="btn btn-default addAuthModal">更新</button></h4>
+      <table>
+        <thead>
+          <tr>
+            <th>系统</th>
+            <th>是否强制更新</th>
+            <th>渠道</th>
+            <th>版本号</th>
+            <th>强制更新下载链接</th>
+            <th>创建时间</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center">
+      <!-- <button class="btn btn-default saveBtn" style="width: 80px;">保存</button> -->
+      <!--<button type="button" class="btn btn-default addBtn">添加</button>-->
+    </div>
+    <!-- 编辑、添加认证项 -->
+    <div class="modal fade editProductModal" id="editProduct" tabindex="-1" role="dialog" data-id="">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">更新版本</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inline form" data-param="rsaKeys">
+              <div class="input-group">
+                <span class="input-group-addon">系统</span>
+                <div class="form-control type">
+                  <label class="radio-inline">
+                    <input type="radio" name="type" data-param="type" value="1" checked>
+                    <label class="radio-beauty"></label>
+                    <span>Android</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="type" data-param="type" value="2">
+                    <label class="radio-beauty"></label>
+                    <span>Ios</span>
+                  </label>
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">是否强制更新</span>
+                <div class="form-control compulsoryRenewal">
+                  <label class="radio-inline">
+                    <input type="radio" name="compulsoryRenewal" data-param="compulsoryRenewal" value="2" checked>
+                    <label class="radio-beauty"></label>
+                    <span>是</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="compulsoryRenewal" data-param="compulsoryRenewal" value="1">
+                    <label class="radio-beauty"></label>
+                    <span>否</span>
+                  </label>
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>渠道</span>
+                <input class="form-control notEmpty channel verify" data-param="channel" placeholder="请输入渠道">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>版本号</span>
+                <input class="form-control notEmpty versionNum verify" data-param="versionNum" placeholder="请输入版本号">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>链接</span>
+                <input class="form-control notEmpty pageUrl verify" data-param="pageUrl" placeholder="请输入链接">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>文案</span>
+                <input class="form-control notEmpty remark verify" data-param="remark" placeholder="请输入文案">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-default">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/packageManage.js" charset="UTF-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+    <link href="../common/style.css" rel="stylesheet">
+    <link href="../common/format.css" rel="stylesheet">
+</head>
+<style>
+    .imgWrap img{
+        width: auto;
+        height: 100px;
+        border-radius: 5%;
+        margin-top: -17px;
+        margin-left: -12px
+    }
+</style>
+<body id="iframe-body">
+
+<div id="iframe-content" class="container-fluid">
+    <div class="panel-head"><h4>首页banner</h4></div>
+    <div class="panel-body">
+        <div class="panel panel-select">
+            <form class="form-inline">
+                <div class="input-group">
+                    <span class="input-group-addon">banner名称</span>
+                    <input type="text" class="form-control" placeholder="请输入完整的banner名称" data-param="name">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">状态</span>
+                    <select class="form-control" data-param="status">
+                        <option value="0">全部</option>
+                        <option value="1">上架</option>
+                        <option value="2">下架</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">跳转类型</span>
+                    <select class="form-control" data-param="type">
+                        <option value="0">全部</option>
+                        <option value="1">产品推荐</option>
+                        <option value="2">分类推荐</option>
+                        <option value="3">跳转链接</option>
+                        <option value="4">不可点击</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">开始时间</span>
+                    <div class="input-group date form_datetime">
+                        <input type="text" class="form-control" id="startTime" data-param="startTimeMin" autocomplete="off">
+                        <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">至</span>
+                    <div class="input-group date form_datetime">
+                        <input type="text" class="form-control" id="endTime" data-param="startTimeMax" autocomplete="off">
+                        <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">结束时间</span>
+                    <div class="input-group date form_datetime">
+                        <input type="text" class="form-control" id="startTime" data-param="endTimeMin" autocomplete="off">
+                        <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">至</span>
+                    <div class="input-group date form_datetime">
+                        <input type="text" class="form-control" id="endTime" data-param="endTimeMax" autocomplete="off">
+                        <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-default query">
+                        查询
+                    </button>
+                </div>
+                <div class="input-group">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default addBtn">
+                        新增banner
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="panel panel-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>操作</th>
+                    <th>排序值</th>
+                    <th>banner图片</th>
+                    <th>banner名称</th>
+                    <th>banner状态</th>
+                    <th>跳转类型</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <ul class="pagination"></ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body panel-table">
+                <div class="form-inline">
+                    <div style="margin-bottom: 15px;">
+                        <span class="status">状态：下架</span>
+                    </div>
+                    <div class="input-group verify">
+                        <span class="input-group-addon">banner名称</span>
+                        <input class="form-control name" data-param="name" placeholder="请填写名称">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">banner图片</span>
+                        <div class="form-control imgWrap" style="height: 100px;width: 190px;font-size: 30px;cursor: pointer;line-height: 100px;text-align: center">
+                            +
+                        </div>
+                        <div class="form-control noBorder imgSize"
+                             style="width: calc(100% - 300px);line-height: 80px;color:rgba(153,153,153,1);">
+                            尺寸1125*597px
+                        </div>
+                        <input type="file" class="hidden file" id="fileload" accept="image/png,image/jpeg">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">开始时间</span>
+                        <div class="input-group date form_datetime verify">
+                            <input type="text" class="form-control startTime" data-param="startTime">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">结束时间</span>
+                        <div class="input-group date form_datetime verify">
+                            <input type="text" class="form-control endTime" data-param="endTime">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">跳转类型</span>
+                        <select class="form-control type" data-param="type">
+                            <option value="1">产品推荐</option>
+                            <option value="2">分类推荐</option>
+                            <option value="3">跳转链接</option>
+                            <option value="4">不可点击</option>
+                        </select>
+                    </div>
+                    <div class="input-group proWrap verify">
+                        <span class="input-group-addon">产品ID</span>
+                        <input type="text" class="form-control pageUrl" data-param="pageUrl" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-default affirmBtn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="updateStatus" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <h4>确认<span></span>?</h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-default updateStatusBtn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <h4>确认删除?</h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-default deleteConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../daichao/js/jquery.min.js"></script>
+<script src="../../daichao/js/bootstrap.min.js"></script>
+<script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+<script src="../../daichao/js/cookie.js"></script>
+<script src="../../js/pager.js"></script>
+<script src="../common/common.js"></script>
+<script src="js/banner.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+</head>
+<body id="iframe-body">
+
+<div id="iframe-content" class="container-fluid">
+    <div class="panel-head"><h4>数据统计</h4></div>
+    <div class="pv-wrapper">
+        <div class="row pv-content">
+            <div class="col-sm-2 pv-panel text-color1">
+                <div class="pv-panel-body">
+                    <div style="color: #62cb31;"></div>
+                    <div style="color: #62cb31;">今日注册用户</div>
+                </div>
+            </div>
+            <div class="col-sm-2 pv-panel text-color2">
+                <div class="pv-panel-body">
+                    <div style="color: #ffb606;"></div>
+                    <div style="color: #ffb606;">今日认证通过用户</div>
+                </div>
+            </div>
+            <div class="col-sm-2 pv-panel text-color1">
+                <div class="pv-panel-body">
+                    <div style="color: #3d98db;"></div>
+                    <div style="color: #3d98db;">今日申请贷款单数</div>
+                </div>
+            </div>
+            <div class="col-sm-2 pv-panel text-color2">
+                <div class="pv-panel-body">
+                    <div style="color: #e74c3c;"></div>
+                    <div style="color: #e74c3c;">今日申请贷款金额</div>
+                </div>
+            </div>
+            <div class="col-sm-2 pv-panel text-color1">
+                <div class="pv-panel-body">
+                    <div style="color: #3d98db;"></div>
+                    <div style="color: #3d98db;">今日放款单数</div>
+                </div>
+            </div>
+            <div class="col-sm-2 pv-panel text-color2">
+                <div class="pv-panel-body">
+                    <div style="color: #3d98db;"></div>
+                    <div style="color: #3d98db;">今日放款金额</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chart-wrapper">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="chart-head">
+                    <h4>近一周注册数量/认证通过数量</h4>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="chart-content">
+                    <canvas id="myChart1"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="chart-head">
+                    <h4>近一周借款数量/续借数量</h4>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="chart-content">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="chart-head">
+                    <h4>近一周逾期数量/应收数量</h4>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="chart-content">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="chart-head">
+                    <h4>近一周贷款金额/贷款单数</h4>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div class="chart-content">
+                    <canvas id="myChart4"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="../daichao/js/jquery.min.js"></script>
+<script src="../daichao/js/bootstrap.min.js"></script>
+<script src="../daichao/js/chart.min.js"></script>
+<script src="../js/home.js"></script>
+</body>
+</html>

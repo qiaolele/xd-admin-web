@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>邀请数据统计</title>
+
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../daichao/css/loader.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <link href="../common/style.css" rel="stylesheet" />
+  </head>
+  <style scoped>
+    [v-cloak] {
+      display: none;
+    }
+
+    #iframe-content {
+      margin-top: 20px;
+    }
+
+    .col-pane {
+      margin-top: 20px;
+    }
+
+    .block {
+      margin: 20px 0;
+    }
+  </style>
+
+  <body id="iframe-body">
+    <div id="iframe-content" class="container-fluid" v-cloak>
+      <div class="col-pane col-pane-right">
+        <div class="panel panel-select">
+          <form class="form-inline">
+            <div class="input-group">
+              <el-date-picker
+                v-model="timeValue"
+                type="datetimerange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                value-format="yyyy-MM-dd HH:mm:ss"
+              >
+              </el-date-picker>
+            </div>
+            <div class="input-group">
+              <button
+                type="button"
+                class="btn btn-default queryBtn"
+                @click="searchList"
+              >
+                <span class="glyphicon glyphicon-search"></span>
+                查询
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--  -->
+      <div class="panel panel-table">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>邀请人数</th>
+              <th>认证人数</th>
+              <th>指定城市认证人数</th>
+              <th>总金币</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in listArr" :key="index">
+              <td>{{item.days}}</td>
+              <td>{{item.invitedUserIdCount}}</td>
+              <td>{{item.authUserIdCount}}</td>
+              <td>{{item.cityUserIdCount}}</td>
+              <td>{{item.numGold}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block" v-show="totalNum>0">
+          <el-pagination
+            background
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-size="size"
+            layout="total, prev, pager, next,jumper"
+            :total="totalNum"
+          >
+          </el-pagination>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../daichao/js/jquery.min.js"></script>
+    <script src="../../daichao/js/cookie.js"></script>
+    <script src="../../daichao/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <script src="../common/common.js"></script>
+    <script src="./js/invitaData.js"></script>
+  </body>
+</html>

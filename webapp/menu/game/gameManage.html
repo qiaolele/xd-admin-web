@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link
+      href="../../daichao/plugin/datetimepicker/datetimepicker.css"
+      rel="stylesheet"
+    />
+    <link href="../common/style.css" rel="stylesheet" />
+    <link href="../common/format.css" rel="stylesheet" />
+  </head>
+  <style>
+    .imgWrap img {
+      width: auto;
+      height: 100px;
+      border-radius: 5%;
+      margin-top: -17px;
+      margin-left: -12px;
+    }
+
+    #myModal label {
+      font-weight: normal;
+    }
+
+    #myModal .textarea .form-control {
+      float: none;
+      width: 55%;
+      margin-right: 15px;
+    }
+
+    #myModal .box {
+      position: relative;
+      top: 6px;
+    }
+
+    #myModal .box label {
+      margin-right: 5px;
+    }
+
+    .fileUpload {
+      line-height: 80px;
+    }
+
+    /* 弹窗样式 */
+    #myModal .form-inline .input-group .fileUpload {
+      display: inline-block;
+      width: 40%;
+      padding: 4px 12px;
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+    }
+
+    #myModal .fileUpload img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    #myModal .box1 {
+      clear: both;
+      width: 70%;
+      display: inline-block;
+    }
+
+    .box1 .item {
+      margin-bottom: 10px;
+    }
+
+    .glyphicon {
+      margin: 0 10px;
+    }
+
+    .item {
+      display: inline-block;
+    }
+
+    .form-inline .input-group .add-btn {
+      position: absolute;
+      right: 0;
+      font-size: 12px;
+      padding: 0px 8px;
+      height: 30px;
+      margin-bottom: 20px;
+    }
+
+    .form-inline .input-group .btn-little {
+      font-size: 12px;
+      padding: 0px 8px;
+      height: 30px;
+    }
+
+    .mg2 {
+      margin-right: 20px;
+    }
+
+    .reducePlatformBtn,
+    .editPlatformBtn,
+    .reduceStregthBtn,
+    .editStregthBtn,
+    .editLocationBtn,
+    .reduceLocationBtn {
+      position: relative;
+      top: 5px;
+      margin-left: 25px;
+      margin-left: 15px;
+      margin-right: 0;
+    }
+
+    .platform,
+    .strength,
+    .location,
+    .item_box {
+      clear: both;
+      overflow: hidden;
+    }
+
+    .item_box {
+      margin-bottom: 10px;
+    }
+
+    #platform,
+    #strength,
+    #location {
+      width: 48%;
+      position: relative;
+      vertical-align: top;
+    }
+    .form-inline .input-group .platformVal,
+    .form-inline .input-group .locationVal,
+    .form-inline .input-group .strengthVal {
+      width: 50%;
+    }
+    .platform,
+    .strength,
+    .location {
+      max-height: 150px;
+      overflow-y: scroll;
+    }
+  </style>
+
+  <body id="iframe-body">
+    <div id="iframe-content" class="container-fluid">
+      <div class="panel-head">
+        <h4>广告管理</h4>
+      </div>
+      <div class="panel-body">
+        <div class="panel panel-select">
+          <form class="form-inline">
+            <div class="input-group">
+              <button
+                type="button"
+                data-toggle="modal"
+                data-target="#myModal"
+                class="btn btn-default addBtn"
+              >
+                添加游戏
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table baseTable">
+          <table>
+            <thead>
+              <tr>
+                <th>游戏名称</th>
+                <th>游戏logo</th>
+                <th>所属分类</th>
+                <th>是否热门</th>
+                <th>基础玩家数量</th>
+                <th>状态</th>
+                <th>排序</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <ul class="pagination"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">添加游戏</h4>
+          </div>
+          <div class="modal-body panel-table">
+            <div class="form-inline">
+              <div class="input-group verify">
+                <span class="input-group-addon">游戏名称</span>
+                <input
+                  type="text"
+                  class="form-control name"
+                  data-param="name"
+                  placeholder="请填写名称"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">游戏logo</span>
+                <div class="form-control fileUpload" data-param="icon">
+                  点击上传
+                </div>
+                <input
+                  type="file"
+                  data-param="icon"
+                  class="hidden file notEmpty"
+                  accept="image/png,image/jpeg"
+                  data-target="file"
+                />
+                <input
+                  type="file"
+                  class="hidden file"
+                  id="fileload"
+                  accept="image/png,image/jpeg"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">游戏类型</span>
+                <span class="input-group-addon addType" style="float:right;"
+                  >添加类型</span
+                >
+                <div class="box1">
+                  <!-- <div class="item typeBox">
+                  <label>
+                    <input class="icheck" type="radio" name="" value="1" checked />
+                    <input type="text" value="手游" class="editInput hide form-control" style="float:none;">
+                    <span class="title">手游</span>
+                  </label>
+                  <button class="btn glyphicon glyphicon-edit"></button>
+                  <button class="btn glyphicon glyphicon-remove hide"></button>
+                </div> -->
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">是否热门</span>
+                <div class="box" id="isHot">
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="hot"
+                      value="1"
+                      checked
+                    />&nbsp;&nbsp;是</label
+                  >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="hot"
+                      value="0"
+                    />&nbsp;&nbsp;否</label
+                  >
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">玩家数量</span>
+                <input
+                  type="text"
+                  class="form-control userNum"
+                  data-param="userNum"
+                  placeholder="请输入"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">状态</span>
+                <div class="box">
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="status"
+                      value="1"
+                      checked
+                    />&nbsp;&nbsp;上架</label
+                  >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="status"
+                      value="0"
+                    />&nbsp;&nbsp;下架</label
+                  >
+                </div>
+              </div>
+              <br />
+              <div class="input-group mg2" id="platform">
+                <span class="input-group-addon"
+                  >平台大区:<button
+                    class="btn glyphicon glyphicon-plus add-btn addPlatformBtn"
+                  ></button></span
+                ><br />
+                <div class="platform">
+                  <!-- <div class="item_box"> -->
+                  <!-- <input
+                      class="form-control notEmpty verify platformVal"
+                      type="text"
+                      data-param="platform"
+                      placeholder="请输入"
+                    />
+                    <button
+                      class="btn glyphicon glyphicon-remove btn-little reducePlatformBtn"
+                    ></button> -->
+                  <!-- </div> -->
+                </div>
+                <div
+                  class="box"
+                  style="display:inline-block;vertical-align: top;"
+                >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="platformIsSingle"
+                      value="1"
+                      checked
+                    />&nbsp;&nbsp;单选</label
+                  >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="platformIsSingle"
+                      value="0"
+                    />&nbsp;&nbsp;多选</label
+                  >
+                </div>
+              </div>
+              <div class="input-group" id="strength">
+                <span class="input-group-addon"
+                  >最高实力:<button
+                    class="btn glyphicon glyphicon-plus add-btn addStregthBtn"
+                  ></button></span
+                ><br />
+                <div class="strength">
+                  <!-- <div class="item_box"> -->
+                  <!-- <input
+                      class="form-control notEmpty verify strengthVal"
+                      type="text"
+                      data-param="strength"
+                      placeholder="请输入"
+                    />
+                    <button
+                      class="btn glyphicon glyphicon-remove btn-little reduceStregthBtn"
+                    ></button> -->
+                  <!-- </div> -->
+                </div>
+                <div
+                  class="box"
+                  style="display:inline-block;vertical-align: top;"
+                >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="strengthIsSingle"
+                      value="1"
+                      checked
+                    />&nbsp;&nbsp;单选</label
+                  >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="strengthIsSingle"
+                      value="0"
+                    />&nbsp;&nbsp;多选</label
+                  >
+                </div>
+              </div>
+              <div class="input-group mg2" id="location">
+                <span class="input-group-addon"
+                  >擅长位置:<button
+                    class="btn glyphicon glyphicon-plus add-btn addLocationBtn"
+                  ></button></span
+                ><br />
+                <div class="location">
+                  <!-- <div class="item_box"> -->
+                  <!-- <input
+                      class="form-control notEmpty verify locationVal"
+                      type="text"
+                      data-param="location"
+                      placeholder="请输入"
+                    />
+                    <button
+                      class="btn glyphicon glyphicon-remove btn-little reduceLocationBtn"
+                    ></button> -->
+                  <!-- </div> -->
+                </div>
+                <div
+                  class="box"
+                  style="display:inline-block;vertical-align: top;"
+                >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="locationIsSingle"
+                      value="1"
+                      checked
+                    />&nbsp;&nbsp;单选</label
+                  >
+                  <label
+                    ><input
+                      class="icheck"
+                      type="radio"
+                      name="locationIsSingle"
+                      value="0"
+                    />&nbsp;&nbsp;多选</label
+                  >
+                </div>
+              </div>
+              <!-- <div class="input-group textarea">
+              <span class="input-group-addon">平台大区</span>
+              <textarea class="form-control" id="platform" data-param="platform"></textarea>
+              <div class="box" style="display:inline-block;vertical-align: top;">
+                <label><input class="icheck" type="radio" name="platformIsSingle" value="1"
+                    checked />&nbsp;&nbsp;单选</label>
+                <label><input class="icheck" type="radio" name="platformIsSingle" value="0" />&nbsp;&nbsp;多选</label>
+              </div>
+            </div>
+            <br>
+            <div class="input-group textarea">
+              <span class="input-group-addon">最高实力</span>
+              <textarea class="form-control" id="strength" data-param="strength"></textarea>
+              <div class="box" style="display:inline-block;vertical-align: top;">
+                <label><input class="icheck" type="radio" name="strengthIsSingle" value="1"
+                    checked />&nbsp;&nbsp;单选</label>
+                <label><input class="icheck" type="radio" name="strengthIsSingle" value="0" />&nbsp;&nbsp;多选</label>
+              </div>
+            </div>
+            <br>
+            <div class="input-group textarea">
+              <span class="input-group-addon">擅长位置</span>
+              <textarea class="form-control" id="location" data-param="location"></textarea>
+              <div class="box" style="display:inline-block;vertical-align: top;">
+                <label><input class="icheck" type="radio" name="locationIsSingle" value="1"
+                    checked />&nbsp;&nbsp;单选</label>
+                <label><input class="icheck" type="radio" name="locationIsSingle" value="0" />&nbsp;&nbsp;多选</label>
+              </div>
+            </div> -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">
+              取消
+            </button>
+            <button type="button" class="btn btn-default affirmBtn">
+              确认
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" style="width: 400px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">提示</h4>
+          </div>
+          <div class="modal-body" style="text-align: center">
+            <h4>确认<span></span>?</h4>
+          </div>
+          <div class="modal-footer" style="text-align: center">
+            <button type="button" class="btn btn-default updateStatusBtn">
+              确认
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document" style="width: 300px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">提示</h4>
+          </div>
+          <div class="modal-body" style="text-align: center">
+            <h4>确认删除?</h4>
+          </div>
+          <div class="modal-footer" style="text-align: center">
+            <button type="button" class="btn btn-default deleteConfirm">
+              确认
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../daichao/js/jquery.min.js"></script>
+    <script src="../../daichao/js/bootstrap.min.js"></script>
+    <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+    <script src="../../daichao/js/cookie.js"></script>
+    <script src="../../js/pager.js"></script>
+    <script src="../common/common.js"></script>
+    <script src="js/gameManage.js"></script>
+  </body>
+</html>

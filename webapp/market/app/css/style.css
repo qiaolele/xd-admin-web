@@ -1,0 +1,605 @@
+@font-face {
+    font-family: 'DINAlternate-Bold';
+    src: url('http://cash-dc-dev.oss-cn-hangzhou.aliyuncs.com/market/app/font/DINAlternateBold.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    font-family: PingFangSC-Regular, sans-serif, "Microsoft Yahei", "DINAlternate-Bold";
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+img {
+    border: 0
+}
+
+html {
+    font-size: 625%
+}
+
+html, body {
+    height: auto;
+    max-width: 750px;
+    margin: 0 auto;
+    background: #f7f7f7;
+    overflow-x: hidden;
+}
+
+.hide {
+    display: none !important;
+}
+
+ul li {
+    list-style: none;
+}
+
+.header {
+    height: 2.3rem;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.header .item {
+    width: 1.9rem;
+    height: 1.58rem;
+    margin-left: .2rem;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.header .item img {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 3px 20px rgba(80, 122, 244, 0.2);
+    border-radius: 10px;
+}
+
+.header .item .title {
+    position: absolute;
+    font-size: 0.32rem;
+    top: .24rem;
+    left: .24rem;
+    color: #fff;
+}
+
+.banner {
+    height: 1.9rem;
+    line-height: 1.9rem;
+    cursor: pointer;
+}
+
+.product {
+    background: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 1.98rem;
+    border-top: 1px solid #ECECEC;
+}
+
+.product-item {
+    width: 3.75rem;
+    height: 1.98rem;
+    line-height: 1.98rem;
+    text-align: center;
+    font-size: .32rem;
+    color: rgba(75, 85, 104, 1);
+    cursor: pointer;
+}
+
+.product-item:first-child {
+    border-right: 1px solid #ECECEC;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    height: .5rem;
+    align-items: center;
+    margin: .3rem .15rem 0 .32rem;
+}
+
+.product-info {
+    display: flex;
+    align-self: center;
+    line-height: .5rem;
+    min-width: 0;
+}
+
+.product-header .product-logo {
+    width: .44rem;
+    height: .44rem;
+    line-height: .44rem;
+}
+
+.product-header .product-name {
+    font-size: .30rem;
+    color: #4B5568;
+    margin-left: .1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    font-family: PingFangSC-Regular, sans-serif, "Microsoft Yahei";
+}
+
+.product-header .tag {
+    max-width: 1.12rem;
+    line-height: .32rem;
+    padding: .04rem .08rem;
+    background: rgba(231, 238, 255, 1);
+    border-radius: 4px;
+    font-size: .24rem;
+    color: rgba(68, 123, 253, 1);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.product-amount {
+    font-size: .32rem;
+    line-height: .34rem;
+    color: #4B5568;
+    margin-top: .16rem;
+    margin-bottom: .2rem;
+    font-family: "DINAlternate-Bold";
+    text-align: left;
+    text-indent: .9rem;
+    font-weight: bold;
+}
+
+.product-tips {
+    font-size: .24rem;
+    line-height: .24rem;
+    color: rgba(147, 155, 172, 1);
+    display: flex;
+    justify-content: center;
+}
+
+.product-tips > div {
+    margin: 0 .05rem;
+    font-family: PingFangSC-Regular, sans-serif, "Microsoft Yahei";
+    color: rgba(147, 155, 172, 1);
+    font-size: .24rem;
+}
+
+.search-bar {
+    height: .88rem;
+    font-size: .3rem;
+    display: flex;
+    justify-content: space-between;
+    line-height: .88rem;
+    color: #232A38;
+    border: 1px solid #ECECEC;
+    background: #fff;
+}
+
+.search-bar > div {
+    cursor: pointer;
+    width: 33%;
+    text-align: center;
+}
+
+.search-bar > div:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: .1rem solid transparent;
+    border-right: .1rem solid transparent;
+    border-top: .2rem solid #232A38;
+    position: relative;
+    top: .35rem;
+    left: .1rem;
+}
+
+.search-panel {
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    max-width: 750px;
+}
+
+.search-content {
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.search-item {
+    width: 1.96rem;
+    height: .64rem;
+    line-height: .64rem;
+    width: 124px;
+    font-size: .28rem;
+    color: rgba(108, 118, 132, 1);
+    text-align: center;
+    background: rgba(247, 247, 247, 1);
+    margin: .2rem .1rem;
+}
+
+.product-list {
+    height: 2.8rem;
+    background: #fff;
+    margin-bottom: .2rem;
+    cursor: pointer;
+}
+
+.product-list .product-bottom {
+    line-height: .7rem;
+    font-size: .24rem;
+    color: #6C7684;
+    border-top: 1px solid #ECECEC;
+    margin: 0 .32rem;
+}
+
+.product-button {
+    width: 1.6rem;
+    height: .6rem;
+    line-height: .6rem;
+    background: linear-gradient(270deg, rgba(67, 122, 253, 1) 0%, rgba(123, 162, 255, 1) 100%);
+    box-shadow: 2px 8px 14px 0px rgba(62, 146, 255, 0.18);
+    border-radius: .35rem;
+    font-size: .26rem;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-list .product-body {
+    height: 1.1rem;
+    margin: 0 .32rem;
+    display: flex;
+    justify-content: space-between;
+    padding-top: .3rem;
+}
+
+.message {
+    font-size: .28rem;
+    color: #939BAC;
+}
+
+.product-amounts {
+    font-size: .4rem;
+    color: rgba(255, 97, 97, 1);
+    font-family: "DINAlternate-Bold";
+    font-weight: bold;
+    line-height: .36rem;
+    height: .36rem;
+}
+
+.productAmounts .message {
+    font-size: .24rem;
+    margin-top: .22rem;
+    font-weight: 100;
+}
+
+.product-list .product-header {
+    padding-top: .2rem;
+    justify-content: flex-start;
+}
+
+.product-list .product-info {
+    margin-right: .3rem;
+}
+
+.product-apply {
+    position: relative;
+    top: -.4rem;
+}
+
+.product-apply .message {
+    text-align: center;
+    margin-bottom: .1rem;
+    font-size: .22rem;
+}
+
+.product-message {
+    width: 33.33%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-message .message:first-child {
+    line-height: .36rem;
+    height: .36rem;
+}
+
+.product-message .message:last-child {
+    font-size: .24rem;
+    margin-top: .22rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.article {
+    padding-top: .4rem;
+    padding-bottom: .5rem;
+    background: #fff;
+}
+
+.article .article-item {
+    margin: 0 .32rem;
+    font-size: .28rem;
+    color: rgba(147, 155, 172, 1);
+}
+
+.article .article-item::before {
+    content: "•";
+    color: #4A66F6;
+    font-size: .08rem;
+}
+
+.article-title {
+    font-size: .32rem;
+    color: rgba(35, 42, 56, 1);
+    display: inline-block;
+    margin-top: .3rem;
+    margin-bottom: .2rem;
+}
+
+.article-detail {
+    text-indent: .25rem;
+    margin-bottom: .02rem;
+}
+
+.questionAndAnswer {
+    margin-top: .2rem;
+    background: #fff;
+    padding: .4rem;
+}
+
+.questionAndAnswer-title, .bule-bar {
+    font-size: .28rem;
+    color: rgba(35, 42, 56, 1);
+}
+
+.questionAndAnswer-title:before, .bule-bar:before {
+    display: inline-block;
+    border: .04rem solid #618CFD;
+    border-top: .14rem solid #618CFD;
+    border-bottom: .14rem solid #618CFD;
+    content: "";
+    position: relative;
+    top: 2px;
+    margin-right: .2rem;
+}
+
+.question-item {
+    margin: .2rem .1rem;
+}
+
+.question {
+    font-size: .28rem;
+    color: rgba(35, 42, 56, 1);
+    margin: .2rem 0;
+}
+
+.answer {
+    font-size: .28rem;
+    color: rgba(147, 155, 172, 1);
+}
+
+.detail {
+    height: 4.4rem;
+    line-height: 4.4rem;
+    background: url("http://cash-dc-dev.oss-cn-hangzhou.aliyuncs.com/market/app/image/detail-banner.png") no-repeat;
+}
+
+.detail .detail-content {
+    line-height: 3.5rem;
+    height: 3.5rem;
+    padding-left: .4rem;
+}
+
+.detail-text {
+    line-height: .28rem;
+    font-size: .28rem;
+    color: rgba(255, 255, 255, 1);
+    padding-top: .6rem;
+}
+
+.detail-amount {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.1rem;
+    margin-top: .3rem;
+    font-family: 'DINAlternate-Bold';
+}
+
+.detail-range {
+    font-size: .24rem;
+    color: rgba(255, 255, 255, .8);
+    line-height: .28rem;
+    margin-top: .55rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.detail-icon {
+    line-height: .33rem;
+    margin-left: .3rem;
+}
+
+.detail-icon:first-child {
+    margin-left: .1rem;
+}
+
+.detail-icon:before {
+    content: "";
+    background: url("http://cash-dc-dev.oss-cn-hangzhou.aliyuncs.com/market/app/image/detail-dates.png") no-repeat;
+    background-size: 100% 100%;
+    width: .33rem;
+    height: .33rem;
+    display: inline-block;
+    position: relative;
+    top: .05rem;
+    left: -.1rem;
+}
+
+.detail-interest:before {
+    background: url("http://cash-dc-dev.oss-cn-hangzhou.aliyuncs.com/market/app/image/detail-interest.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.detail-releas:before {
+    background: url("http://cash-dc-dev.oss-cn-hangzhou.aliyuncs.com/market/app/image/detail-release.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.ads-tips {
+    line-height: .9rem;
+    background: rgba(255, 255, 255, .1954);
+    font-size: .28rem;
+    color: rgba(255, 255, 255, 1);
+    text-indent: .4rem;
+}
+
+.apply-item {
+    height: 2.6rem;
+    line-height: 2.6rem;
+    padding: .46rem .3rem 0 .3rem;
+}
+
+.bule-bar {
+    line-height: .28rem;
+    color: #232A38;
+}
+
+.apply-condition {
+    margin-top: .24rem;
+}
+
+.apply-condition-item {
+    height: .28rem;
+    line-height: .28rem;
+    font-size: .28rem;
+    color: rgba(147, 155, 172, 1);
+    margin-bottom: .2rem;
+    text-indent: .4rem;
+}
+.apply-bottom {
+    width: 100%;
+    height: 1rem;
+    background: rgba(71, 110, 255, 1);
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.apply-bottom-text {
+    font-size: .36rem;
+    color: rgba(255, 255, 255, 1);
+    line-height: .7rem;
+}
+
+.apply-bottom-tips {
+    font-size: .22rem;
+    color: rgba(170, 195, 255, 1);
+    line-height: .3rem;
+    margin-top: -.1rem;
+}
+
+.product-apply .progress_bg {
+    width: 1.2rem;
+    height: .04rem;
+    background: rgba(236, 236, 236, 1);
+    margin: 0 auto;
+    margin-top: .08rem;
+    margin-bottom: .16rem;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.product-apply .progress_bar {
+    background: #FB6131;
+    width: .5rem;
+    height: .04rem;
+    border-radius: 5px;
+}
+
+#loader {
+    display: none;
+}
+
+#loader.active {
+    /*display: block*/
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+    left: 50%;
+    margin-left: -32px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 27px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #999;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 6px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 6px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 26px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 45px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(19px, 0);
+    }
+}

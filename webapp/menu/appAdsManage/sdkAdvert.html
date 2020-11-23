@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  .panel-select input,
+  .panel-select .input-group {
+    height: auto;
+  }
+</style>
+
+<body id="iframe-body">
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>SDK广告</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <!-- <div class="input-group">
+            <span class="input-group-addon">启动页广告</span>
+            <div class="form-control">
+              <label class="radio-inline">
+                <input type="radio" name="type" value="2">
+                <label class="radio-beauty"></label>
+                <span>启动</span>
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type" value="3">
+                <label class="radio-beauty"></label>
+                <span>暂停</span>
+              </label>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">信息流广告</span>
+            <div class="form-control">
+              <label class="radio-inline">
+                <input type="radio" name="type1" value="2">
+                <label class="radio-beauty"></label>
+                <span>启动</span>
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="type1" value="3">
+                <label class="radio-beauty"></label>
+                <span>暂停</span>
+              </label>
+            </div>
+          </div> -->
+          <div class="input-group">
+            <span class="input-group-addon">启动页广告</span>
+            <select class="form-control startShow" data-param="startShow">
+              <option value="1">展示</option>
+              <option value="0">不展示</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">信息流广告</span>
+            <select class="form-control listShow" data-param="listShow">
+              <option value="1">展示</option>
+              <option value="0">不展示</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="panel panel-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="width10">展示形式</th>
+              <th>广告数量</th>
+              <th>编辑</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="display: flex;justify-content: space-around;">
+                  <select class="form-control displayForm" data-param="displayForm">
+                    <option value="1">三张小图</option>
+                    <option value="2">左文右图</option>
+                    <option value="3">三张小图+左文右图</option>
+                  </select>
+                </div>
+              </td> 
+              <td>
+                1 / <input class="form-control showFrequency" style="width: 100px;display:inline-block;" value="1"
+                  type="number" data-param="showFrequency">
+              </td>
+              <td>
+                <button class="btn edit">保存</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/sdkAdvert.js" charset="UTF-8"></script>
+</body>
+
+</html>

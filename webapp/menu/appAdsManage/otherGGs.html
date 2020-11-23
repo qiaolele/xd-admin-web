@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+  <link href="../common/format.css" rel="stylesheet">
+</head>
+<style>
+  .imgWrap img {
+    width: auto;
+    height: auto;
+    border-radius: 5%;
+    margin-top: -17px;
+    max-width: 180px;
+    max-height: 100px;
+    margin-left: -14px;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>其他广告位管理</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-table">
+        <table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th style="width: 100px;">操作</th>
+              <th>图片</th>
+              <th>广告位置</th>
+              <th>跳转类型</th>
+              <th>更新时间</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">编辑</h4>
+        </div>
+        <div class="modal-body panel-table">
+          <div class="form-inline">
+            <div style="margin-bottom: 15px;">
+              广告位置：<span class="name"></span>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">banner图片</span>
+              <div class="form-control imgWrap"
+                style="height: 100px;width: 180px;font-size: 30px;cursor: pointer;line-height: 100px;text-align: center">
+                +
+              </div>
+              <div class="form-control noBorder imgSize"
+                style="width: calc(100% - 300px);line-height: 80px;color:rgba(153,153,153,1);">
+                尺寸80*80px
+              </div>
+              <input type="file" class="hidden file" id="fileload" accept="image/png,image/jpeg,image/gif">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">跳转类型</span>
+              <select class="form-control type" data-param="type">
+                <option value="1">产品推荐</option>
+                <option value="2">分类推荐</option>
+                <option value="3">跳转链接</option>
+                <option value="4">不可点击</option>
+              </select>
+            </div>
+            <div class="input-group proWrap">
+              <span class="input-group-addon">产品/分类ID</span>
+              <input type="text" class="form-control pageUrl" data-param="pageUrl" placeholder="请输入">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-default affirmBtn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="updateStatus" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          <h4>确认<span></span>?</h4>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <button type="button" class="btn btn-default updateStatusBtn">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="js/otherAds.js"></script>
+</body>
+
+</html>

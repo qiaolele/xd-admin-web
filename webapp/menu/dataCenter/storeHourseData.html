@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>撞库数据</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <div class="input-group">
+            <span class="input-group-addon">时间</span>
+            <div class="input-group date  form_datetime">
+              <input type="text" class="form-control" isDefault="false" data-param="startTime">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove"></span>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">至</span>
+            <div class="input-group date  form_datetime">
+              <input type="text" class="form-control" isDefault="false" data-param="endTime">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-remove"></span>
+              </span>
+            </div>
+          </div>
+          <div class="input-group">
+            <button type="button" class="btn btn-default check" style="margin: 0 5px">
+              <span class="glyphicon glyphicon-search"></span>查询
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-table">
+      <div class="description-count " id="description-style">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>产品</th>
+            <th>撞库人数</th>
+            <th>撞库通过人数</th>
+            <th>联登次数</th>
+            <th>联登成功人数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="10">暂无数据</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/storeHourseData.js" charset="UTF-8"></script>
+</body>
+
+</html>

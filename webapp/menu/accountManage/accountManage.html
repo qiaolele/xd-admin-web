@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../daichao/css/icheck.css" rel="stylesheet">
+
+</head>
+<body id="iframe-body">
+<div id="iframe-content" class="container-fluid">
+    <div class="panel-head"><h4>账号管理</h4></div>
+    <div class="panel-body">
+        <div class="row row-body">
+            <div class="col-md-3" id="menuList">
+                <div class="col-pane col-pane-left">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    <div class="col-pane-body">
+                        <h5 class="col-pane-title">新增用户账号</h5>
+
+                        <div class="form-group">
+                            <label class="control-label"><i class="icon-must">*</i><span class="label-title">用户名称</span></span><span class="error-tips" id="userName-tips"></span></label>
+                            <input class="form-control" type="text" maxlength="20" id="userName-input" placeholder="请输入用户名称" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><i class="icon-must">*</i><span class="label-title">登录账号</span><span class="error-tips" id="loginName-tips"></span></label>
+                            <input class="form-control" type="text" maxlength="20" id="loginName-input" placeholder="请输入登录账号" />
+                        </div>
+                        <div class="form-group">
+                            <form>
+                                <label class="control-label"><i class="icon-must">*</i><span class="label-title">初始密码</span><span class="error-tips" id="inital-tips"></span></label>
+                                <input class="form-control" type="password" maxlength="20" id="inital-input" />
+                            </form>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><i class="icon-must">*</i><span class="label-title">手机号</span><span class="error-tips" id="phone-tips"></span></label>
+                            <input class="form-control" type="text" maxlength="11" id="phone-input" placeholder="请输入手机号码"  />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><i class="icon-must">*</i>角色名称</label>
+                            <select id="roleType-left" class="form-control"></select>
+                        </div>
+                        <div class="form-group form-group-dlvp" id="form-group-dlvp">
+                            <label class="control-label"><i class="icon-must">*</i>代理商级别</label>
+                            <div class="form-control">
+                                <label><input class="icheck" type="radio" name="daili-vp" value="1" checked />&nbsp;&nbsp;一级</label>
+                                <label><input class="icheck" type="radio" name="daili-vp" value="2" />&nbsp;&nbsp;二级</label>
+                                <label><input class="icheck" type="radio" name="daili-vp" value="3" />&nbsp;&nbsp;三级</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">备注</label>
+                            <textarea class="form-control" id="remark" ></textarea>
+                        </div>
+                        <div class="form-group form-group-submit">
+                            <button type="button" class="btn btn-default btn-rest">重置</button>
+                            <button type="button" class="btn btn-default btn-enter">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="col-pane col-pane-right">
+                    <div class="panel panel-select">
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <span class="input-group-addon">用户名称</span>
+                                <input type="text" class="form-control w150" id="userName-search" placeholder="请输入用户名称">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">登录账号</span>
+                                <input type="text" class="form-control w150" id="loginName" placeholder="请输入登录账号">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">角色名称</span>
+                                <div class="selectWrap">
+                                    <select id="roleType-right"></select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">用户状态</span>
+                                <div class="selectWrap w120">
+                                    <select id="userStatus">
+                                        <option value="-1">全部</option>
+                                        <option value="1">有效</option>
+                                        <option value="0">停用</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <button type="button" class="btn btn-default" id="btn-search"><span class="glyphicon glyphicon-search"></span>查询</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel panel-table">
+                        <table style="min-width: 1130px;">
+                            <thead>
+                            <tr>
+                                <th>操作</th>
+                                <th>序号</th>
+                                <th>用户名称</th>
+                                <th>登录账号</th>
+                                <th>手机号</th>
+                                <th>角色名称</th>
+                                <th>用户状态</th>
+                                <th>最近登录时间</th>
+                                <th>最近登录IP</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!--分页-->
+                        <ul class="pagination"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- 重置密码 -->
+<div class="modal fade modal-resetPwd" id="modal-resetPwd" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">重置密码</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="resetPwd-input1" class="control-label"><i class="icon-must">*</i>新密码</label>
+                        <input type="text" class="form-control" id="resetPwd-input1">
+                    </div>
+                    <div class="form-group">
+                        <label for="resetPwd-input2" class="control-label"><i class="icon-must">*</i>确认密码</label>
+                        <input type="text" class="form-control" id="resetPwd-input2">
+                    </div>
+                    <div class="form-group">
+                        <label id="resetPwd-tips" class="control-label red"></label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-default">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../daichao/js/jquery.min.js"></script>
+<script src="../../daichao/js/bootstrap.min.js"></script>
+<script src="../../daichao/js/cookie.js"></script>
+<script src="../../daichao/js/icheck.min.js"></script>
+<script src="../../js/pager.js"></script>
+<script src="../common/common.js"></script>
+<script src="js/accountManage.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+  <style>
+    .fileUpload {
+      line-height: 80px;
+    }
+
+    /* 弹窗样式 */
+    .editProductModal .form-inline .input-group .fileUpload1,
+    .editProductModal .form-inline .input-group .fileUpload2 {
+      display: inline-block;
+      width: 40%;
+      padding: 4px 12px;
+      height: 80px;
+      line-height: 80px;
+    }
+
+    .editProductModal .form {
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    .editProductModal .fileUpload1 img,
+    .editProductModal .fileUpload2 img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .editProductModal .info {
+      width: calc(100% - 180px);
+      color: rgba(153, 153, 153, 1);
+      border: none;
+      display: inline;
+      float: left;
+      float: right;
+      position: absolute;
+      line-height: 80px;
+    }
+  </style>
+</head>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <h4><button class="btn btn-default add addAuthModal">添加</button></h4>
+    <div class="panel-body">
+      <div class="panel panel-table">
+        <table>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>logo</th>
+              <th>推荐名称</th>
+              <th>推荐类型</th>
+              <th>跳转ID或链接</th>
+
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+          <!-- <tfoot>
+            <tr class="hide query-item">
+              <td>
+                <button class="btn delete">删除</button>
+              </td>
+              <td></td>
+              <td>
+                <div class="fileUpload" style="cursor: pointer">
+                  点击上传
+                </div>
+                <input type="file" class="hidden file">
+              </td>
+              <td>
+                <input class="form-control notEmpty" data-param="name">
+              </td>
+              <td>
+                <select class="form-control" data-param="genre">
+                  <option value="1">产品推荐</option>
+                  <option value="2">分类推荐</option>
+                  <option value="3">跳转链接</option>
+                </select>
+              </td>
+              <td>
+                <input class="form-control notEmpty" data-param="pageUrl" placeholder="请输入">
+              </td>
+            </tr>
+          </!-->
+        </table>
+        <!-- <div class="form-inline text-center" style="margin-top: 20px;">
+          <div class="input-group">
+            <button class="btn btn-default confirm">保存</button>
+          </div>
+          <div class="input-group">
+            <button class="btn btn-default add">添加</button>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="modal fade editProductModal" id="editProduct" tabindex="-1" role="dialog" data-id="">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">编辑/添加新口子推荐位</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inline form" data-param="rsaKeys">
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>推荐名称</span>
+                <input class="form-control notEmpty name verify" data-param="name" placeholder="请输入推荐名称">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>推荐类型</span>
+                <select class="form-control genre" data-param="genre">
+                  <option value="1">产品推荐</option>
+                  <option value="2">分类推荐</option>
+                  <option value="3">跳转链接</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>跳转ID或链接</span>
+                <input class="form-control notEmpty pageUrl verify" data-param="pageUrl" placeholder="请输入跳转ID或链接">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>logo</span>
+                <div class="form-control text-center fileUpload1">
+                  点击上传
+                </div>
+                <input type="file" data-param="icon" class="hidden file1 notEmpty" accept="image/png,image/jpeg"
+                  data-target="file1">
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-default">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/appNewEntran.js" charset="UTF-8"></script>
+</body>
+
+</html>

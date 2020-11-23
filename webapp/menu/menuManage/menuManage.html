@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet" />
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet" />
+  <link href="../common/style.css" rel="stylesheet" />
+  <link href="../common/format.css" rel="stylesheet" />
+</head>
+<style>
+  .imgWrap img {
+    width: auto;
+    height: 100px;
+    border-radius: 5%;
+    margin-top: -17px;
+    margin-left: -12px;
+  }
+
+  #myModal label {
+    font-weight: normal;
+  }
+
+  #myModal .textarea .form-control {
+    float: none;
+    width: 55%;
+    margin-right: 15px;
+  }
+
+  #myModal .box {
+    position: relative;
+    top: 6px;
+  }
+
+  #myModal .box label {
+    margin-right: 5px;
+  }
+
+  .fileUpload {
+    line-height: 80px;
+  }
+
+  /* 弹窗样式 */
+  #myModal .form-inline .input-group .fileUpload {
+    display: inline-block;
+    width: 40%;
+    padding: 4px 12px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+  }
+
+  #myModal .fileUpload img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  #myModal .box1 {
+    clear: both;
+    width: 70%;
+    display: inline-block;
+  }
+
+  .box1 .item {
+    margin-bottom: 10px;
+  }
+
+  .glyphicon {
+    margin: 0 10px;
+  }
+
+  .item {
+    display: inline-block;
+  }
+
+  .form-inline .input-group .add-btn {
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    padding: 0px 8px;
+    height: 30px;
+    margin-bottom: 20px;
+  }
+
+  .form-inline .input-group .btn-little {
+    font-size: 12px;
+    padding: 0px 8px;
+    height: 30px;
+  }
+
+  .mg2 {
+    margin-right: 20px;
+  }
+
+  .reducePlatformBtn,
+  .editPlatformBtn,
+  .reduceStregthBtn,
+  .editStregthBtn,
+  .editLocationBtn,
+  .reduceLocationBtn {
+    position: relative;
+    top: 5px;
+    margin-left: 25px;
+    margin-left: 15px;
+    margin-right: 0;
+  }
+
+  .platform,
+  .strength,
+  .location,
+  .item_box {
+    clear: both;
+    overflow: hidden;
+  }
+
+  .item_box {
+    margin-bottom: 10px;
+  }
+
+  #platform,
+  #strength,
+  #location {
+    width: 48%;
+    position: relative;
+    vertical-align: top;
+  }
+
+  .form-inline .input-group .platformVal,
+  .form-inline .input-group .locationVal,
+  .form-inline .input-group .strengthVal {
+    width: 50%;
+  }
+
+  .platform,
+  .strength,
+  .location {
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+</style>
+
+<body id="iframe-body">
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-head">
+      <h4>我的页面——菜单管理</h4>
+    </div>
+    <div class="panel-body">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <div class="input-group">
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default addBtn">
+              添加
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="panel panel-table baseTable">
+        <table>
+          <thead>
+            <tr>
+              <th>图标</th>
+              <th>标题</th>
+              <th>跳转地址</th>
+              <th>开关</th>
+              <th>排序</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <ul class="pagination"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">添加菜单</h4>
+        </div>
+        <div class="modal-body panel-table">
+          <div class="form-inline">
+            <div class="input-group">
+              <span class="input-group-addon">图标</span>
+              <div class="form-control fileUpload" data-param="icon">
+                点击上传
+              </div>
+              <input type="file" data-param="icon" class="hidden file notEmpty" accept="image/png,image/jpeg"
+                data-target="file" />
+              <input type="file" class="hidden file" id="fileload" accept="image/png,image/jpeg" />
+            </div>
+            <div class="input-group verify">
+              <span class="input-group-addon">标题</span>
+              <input type="text" class="form-control name" data-param="name" placeholder="请填写标题" />
+            </div>
+            <div class="input-group verify">
+              <span class="input-group-addon">跳转地址</span>
+              <input type="text" class="form-control url" data-param="url" placeholder="请填写地址" />
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">开关</span>
+              <div class="box" id="isHot">
+                <label><input class="icheck" type="radio" name="hot" value="1" checked />&nbsp;&nbsp;开</label>
+                <label><input class="icheck" type="radio" name="hot" value="0" />&nbsp;&nbsp;关</label>
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">排序</span>
+              <input type="text" class="form-control userNum" data-param="userNum" placeholder="请输入顺序" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rest" data-dismiss="modal">
+            取消
+          </button>
+          <button type="button" class="btn btn-default affirmBtn">
+            确认
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/menuManage.js"></script>
+</body>
+
+</html>

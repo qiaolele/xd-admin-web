@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../../daichao/css/bootstrap-select.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+</head>
+<style>
+  .w5 {
+    width: 500px !important;
+  }
+
+  .labelStyle {
+    margin-right: 5px;
+    float: left;
+  }
+
+  .lh {
+    line-height: 40px;
+  }
+
+  #myModal label {
+    font-weight: normal !important;
+  }
+
+  .inputStyle {
+    float: none !important;
+    width: 120px !important;
+  }
+
+  .addSelect {
+    width: 40px !important;
+    margin-left: 20px;
+  }
+
+  #iframe-content .selectWrap {
+    display: inline-block;
+    height: 40px;
+  }
+
+  #myTab {
+    margin-bottom: 20px;
+  }
+
+  #myTab .btn {
+    margin-right: 30px;
+  }
+
+
+  /* 弹窗样式 */
+  .editProductModal .form-inline .input-group .fileUpload1,
+  .editProductModal .form-inline .input-group .fileUpload2 {
+    display: inline-block;
+    width: 40%;
+    padding: 4px 12px;
+    height: 80px;
+    line-height: 80px;
+  }
+
+  .editProductModal .form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .editProductModal .fileUpload1 img,
+  .editProductModal .fileUpload2 img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .editProductModal .info {
+    width: calc(100% - 180px);
+    color: rgba(153, 153, 153, 1);
+    border: none;
+    display: inline;
+    float: left;
+    float: right;
+    position: absolute;
+    line-height: 80px;
+  }
+
+  .addAuthModal {
+    margin-left: 20px;
+  }
+
+  .reduce,
+  .add {
+    display: inline-block;
+    width: 40px;
+    border: 1px solid #e6e6e6;
+    margin-left: 20px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  .box1 {
+    margin-left: 68px;
+  }
+
+  .form-inline .money>.form-control {
+    width: 50%;
+  }
+</style>
+
+<body id="iframe-body">
+
+  <div id="iframe-content" class="container-fluid">
+    <div class="panel-body">
+      <div class="panel panel-table">
+        <div id="myTab">
+          <button class="btn btn-info" data-type="project">项目</button>
+          <button class="btn" data-type="event">事件</button>
+          <button class="btn" data-type="attribute">属性</button>
+        </div>
+        <div class="tab-content  panel-table">
+          <div id="project" role="tabpanel" class="tab-pane active clearfix">
+            <h4 style="margin-bottom:20px;">埋点配置 <button class="btn btn-default addProductBtn">添加</button></h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>项目名称</th>
+                  <th>关联事件</th>
+                  <th>创建事件</th>
+                  <th>更新时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="pagination"></ul>
+          </div>
+          <div id="event" role="tabpanel" class="tab-pane">
+            <h4>埋点配置 <button class="btn btn-default addEventBtn">添加</button></h4>
+            <div class="panel-body">
+              <form class="form-inline">
+                <div class="input-group">
+                  <span class="input-group-addon">事件名称</span>
+                  <input type="text" class="form-control keyword" placeholder="事件名称" data-param="keyword">
+                </div>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default search">
+                    查询
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>事件名称</th>
+                  <th>事件Key</th>
+                  <th>关联属性</th>
+                  <th>创建时间</th>
+                  <th>更新时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="pagination"></ul>
+          </div>
+          <div id="attribute" role="tabpanel" class="tab-pane">
+            <h4 style="margin-bottom:20px;">埋点配置 <button class="btn btn-default addAttrBtn">添加</button></h4>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>属性名称</th>
+                  <th>属性Key</th>
+                  <th>属性长度</th>
+                  <th>示例</th>
+                  <th>创建时间</th>
+                  <th>更新时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="pagination"></ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- 编辑、添加项目配置 -->
+    <div class="modal fade editProductModal" id="editProduct" tabindex="-1" role="dialog" data-id="">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">项目配置</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inline form" data-param="rsaKeys">
+              <div class="input-group">
+                <span class="input-group-addon"><span class="text-danger">*</span>项目名称</span>
+                <input class="form-control notEmpty name verify" data-param="name" placeholder="请输入VIP名称">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">关联事件</span>
+                <label for="event_select"></label>
+                <select id="event_select" class="selectpicker" multiple data-live-search="true">
+                  <!-- <option>cow</option>
+                  <option>bull</option>
+                  <option>Ble</option> -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-default">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 编辑、添加事件配置 -->
+  <div class="modal fade editProductModal" id="editEvent" tabindex="-1" role="dialog" data-id="">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">事件配置</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline form" data-param="rsaKeys">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>事件名称</span>
+              <input class="form-control notEmpty name verify" data-param="name" placeholder="事件名称">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>事件Key</span>
+              <input class="form-control notEmpty eventKey verify" data-param="eventKey" placeholder="事件Key">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>事件说明</span>
+              <input class="form-control notEmpty description verify" data-param="description" placeholder="事件说明">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">关联属性</span>
+              <label for="attr_select"></label>
+              <select id="attr_select" multiple data-live-search="true">
+                <!-- <option>cow</option>
+                  <option>Ble</option> -->
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-default">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 编辑、添加属性配置 -->
+  <div class="modal fade editProductModal" id="editAttr" tabindex="-1" role="dialog" data-id="">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">属性配置</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline form" data-param="rsaKeys">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>属性名称</span>
+              <input class="form-control notEmpty name verify" data-param="name" placeholder="属性名称">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>属性Key</span>
+              <input class="form-control notEmpty configKey verify" data-param="configKey" placeholder="属性Key">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>最大长度</span>
+              <input class="form-control notEmpty configLen verify " type="number" data-param="configLen"
+                placeholder="最大长度">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><span class="text-danger">*</span>value示例</span>
+              <input class="form-control notEmpty example verify" data-param="example" placeholder="value示例">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-default">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 删除项目弹窗 -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" style="top: 20%;">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          <h4>确认删除?</h4>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <button type="button" class="btn btn-default deleteConfirm">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除事件弹窗 -->
+  <div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" style="top: 20%;">
+    <div class="modal-dialog" role="document" style="width: 300px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          <h4>确认删除?</h4>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <button type="button" class="btn btn-default deleteEventConfirm">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/js/bootstrap-select.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/pointConfig.js" charset="UTF-8"></script>
+</body>
+
+</html>

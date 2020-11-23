@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../daichao/css/loader.css" rel="stylesheet">
+  <link href="../../daichao/plugin/datetimepicker/datetimepicker.css" rel="stylesheet">
+  <link href="../common/style.css" rel="stylesheet">
+  <link href="../common/format.css" rel="stylesheet">
+</head>
+<style>
+  #basicInfo .authStatus span {
+    margin-right: 5px;
+    background-color: #EFF7FF;
+    color: #999999;
+    font-size: 14px;
+    display: inline-block;
+    padding: 0 5px 0 5px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 3px;
+  }
+
+  #messageAdvert .list .money {
+    display: inline-block;
+    padding: 20px 40px;
+    border-radius: 5px;
+    background: #dddddd;
+  }
+
+  #messageAdvert .list .moneyAct {
+    color: #fff;
+    background: #4ecda5;
+  }
+
+  #messageAdvert .list li {
+    text-align: center;
+  }
+
+  #messageAdvert .list .btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+
+  #messageAdvert .list .usedAct {
+    border: none;
+    color: #4d4d4d;
+    background: #ffd954
+  }
+
+  #messageAdvert .list ul {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+  }
+
+  .f1 .selected,
+  .f2 .selected,
+  .f3 .selected,
+  .selected {
+    color: inherit;
+  }
+
+  .navs-item {
+    margin-top: 40px;
+  }
+
+  .navs-item button {
+    margin-right: 15px;
+  }
+
+  #myModal label,
+  #fxAdvert label {
+    font-weight: normal;
+  }
+
+  #myModal .textarea .form-control,
+  #fxAdvert .textarea .form-control {
+    float: none;
+    width: 55%;
+    margin-right: 15px;
+  }
+
+  #myModal .box,
+  #fxAdvert .box {
+    position: relative;
+    top: 6px;
+  }
+
+  #myModal .box label,
+  #fxAdvert .box label {
+    margin-right: 5px;
+  }
+
+  .fileUpload {
+    line-height: 80px;
+  }
+
+  #myTab .active:after {
+    z-index: 11;
+  }
+
+  /* 弹窗样式 */
+  #myModal .form-inline .input-group .fileUpload2,
+  #myModal .form-inline .input-group .fileUpload3,
+  #fxAdvert .form-inline .input-group .fileUpload1 {
+    display: inline-block;
+    width: 40%;
+    padding: 4px 12px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+  }
+
+  #myModal .fileUpload2 img,
+  #myModal .fileUpload3 img,
+  #fxAdvert .fileUpload1 img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<body id="iframe-body">
+  <div id="iframe-content" class="container-fluid">
+    <div class="col-pane col-pane-right">
+      <div class="panel panel-select">
+        <form class="form-inline">
+          <ul class="nav nav-tabs" id="myTab">
+            <li role="presentation" class="active fixedAdvert"><a href="#basicInfo" role="tab"
+                data-toggle="tab">固定广告位</a></li>
+            <li role="presentation" class="messageAdvert"><a href="#messageAdvert" role="tab"
+                data-toggle="tab">信息流广告</a>
+            </li>
+          </ul>
+          <div class="navs-item hide">
+            <button type="button" class="btn btn-default user">用户</button>
+            <button type="button" class="btn btn-default dynamic">动态</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="tab-content panel-table">
+      <!--基本信息-->
+      <div role="tabpanel" class="tab-pane active" id="basicInfo">
+        <div class="panel panel-table" id="auditModal">
+          <button type="button" data-toggle="modal" data-target="#fxAdvert" class="btn btn-default addBtn">
+            添加广告
+          </button>
+          <div class="tableTop messageTable">
+            <table style="margin-top: 10px;">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>广告图</th>
+                  <th>URL</th>
+                  <th>位置</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 动态信息广告 -->
+      <div role="tabpanel" class="tab-pane" id="messageAdvert">
+        <div class="panel panel-table" id="auditModal">
+          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default addBtn">
+            添加广告
+          </button>
+          <div class="overflow userTable panel-table user" id="user">
+            <table class="table table-bordered" style="margin-top: 10px;">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>广告图</th>
+                  <th>昵称</th>
+                  <th>文案</th>
+                  <th>URL</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <ul class="pagination"></ul>
+          </div>
+          <div class="overflow dynamicTable panel-table dynamic hide" id="dynamic">
+            <table class="table table-bordered" style="margin-top: 10px;">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>广告图</th>
+                  <th>头像</th>
+                  <th>昵称</th>
+                  <th>小标题</th>
+                  <th>文案</th>
+                  <th>URL</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <ul class="pagination"></ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 信息流广告 -->
+    <div class="modal fade otherModal" id="myModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加广告</h4>
+          </div>
+          <div class="modal-body panel-table">
+            <div class="form-inline">
+              <div class="input-group">
+                <span class="input-group-addon">广告图</span>
+                <div class="form-control text-center fileUpload2">
+                  点击上传
+                </div>
+                <input type="file" data-param="picUrl" class="hidden file2 notEmpty" accept="image/png,image/jpeg"
+                  data-target="file2" id="fileload2">
+              </div>
+              <div class="input-group isShowbox">
+                <span class="input-group-addon">头像</span>
+                <div class="form-control text-center fileUpload3">
+                  点击上传
+                </div>
+                <input type="file" data-param="picUrl" class="hidden file3 notEmpty" accept="image/png,image/jpeg"
+                  data-target="file3" id="fileload3">
+              </div>
+              <div class="input-group verify isShowbox">
+                <span class="input-group-addon">小标题</span>
+                <input class="form-control title" data-param="title" placeholder="请填写小标题">
+              </div>
+              <div class="input-group verify">
+                <span class="input-group-addon">昵称</span>
+                <input class="form-control nickname" data-param="nickname" placeholder="请填写昵称">
+              </div>
+              <div class="input-group verify">
+                <span class="input-group-addon">文案</span>
+                <input class="form-control copywriting" data-param="copywriting" placeholder="请填写文案">
+              </div>
+              <div class="input-group verify">
+                <span class="input-group-addon">URL</span>
+                <input class="form-control url" data-param="url" placeholder="请填写URL">
+              </div>
+              <div class="input-group verify">
+                <span class="input-group-addon">展示顺序</span>
+                <div class="aaa">
+                  第&nbsp;&nbsp;<input type="text" class="form-control orderNum" data-param="orderNum"
+                    placeholder="请填写展示顺序" style="float:none;">&nbsp;&nbsp;个
+                </div>
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">状态</span>
+                <div class="box">
+                  <label><input class="icheck" type="radio" name="status" value="1" checked />&nbsp;&nbsp;开启</label>
+                  <label><input class="icheck" type="radio" name="status" value="0" />&nbsp;&nbsp;关闭</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-default affirmMessBtn">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 固定广告位 -->
+    <div class="modal fade otherModal" id="fxAdvert" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加广告</h4>
+          </div>
+          <div class="modal-body panel-table">
+            <div class="form-inline">
+              <div class="input-group">
+                <span class="input-group-addon">广告图</span>
+                <div class="form-control text-center fileUpload1">
+                  点击上传
+                </div>
+                <input type="file" data-param="icon" class="hidden file1 notEmpty" accept="image/png,image/jpeg"
+                  data-target="file1" id="fileload1">
+              </div>
+              <div class="input-group verify">
+                <span class="input-group-addon">位置</span>
+                <select class="form-control position" data-param="position">
+                  <option value="1">首页Banner</option>
+                  <option value="2">我的页面</option>
+                  <option value="3">启动页</option>
+                  <option value="4">H5页面</option>
+                  <option value="5">瓷片1</option>
+                  <option value="6">瓷片2</option>
+                </select>
+              </div>
+              <div class="input-group verify">
+                <span class="input-group-addon">URL</span>
+                <input class="form-control url" data-param="url" placeholder="请填写URL">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">状态</span>
+                <div class="box">
+                  <label><input class="icheck" type="radio" name="status" value="1" checked />&nbsp;&nbsp;开启</label>
+                  <label><input class="icheck" type="radio" name="status" value="0" />&nbsp;&nbsp;关闭</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-rest" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-default affirmFixBtn">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+
+  <script src="../../daichao/js/jquery.min.js"></script>
+  <script src="../../daichao/js/cookie.js"></script>
+  <script src="../../daichao/js/bootstrap.min.js"></script>
+  <script src="../../daichao/plugin/datetimepicker/jquery.datetimepicker.full.js"></script>
+  <script src="../../js/pager.js"></script>
+  <script src="../common/common.js"></script>
+  <script src="js/advertManage.js"></script>
+</body>
+
+</html>
