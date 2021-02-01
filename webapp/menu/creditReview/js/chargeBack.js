@@ -14,10 +14,23 @@ new Vue({
     textarea: "", //驳回原因
     disabled: false, //禁止输入
     options: [],
-    value: ''
+    value: '',//拨打时间
+    creditRadio:1,//1：否 2：是
+    creditValue:"",//选择扣分项
+    creditList:[
+      // {
+      //   value: '10',
+      //   label: '退单后骚扰用户或泄露用户隐私'
+      // },
+      // {
+      //   value: '20',
+      //   label: '离职后继续使用前公司资质认证'
+      // },
+    ]
   },
   created() {
     this.getList(this.chooseStatus, this.currentPage);
+    this.selectPoint();
   },
   mounted() {},
   methods: {
@@ -76,7 +89,7 @@ new Vue({
     },
     showDigo(item) {
       //点击查看
-      console.log(item);
+      // console.log(item);
       this.options=[];
       this.value = '';
       this.radio = 12;
@@ -89,53 +102,88 @@ new Vue({
         })
       });
       this.toastImgs = this.toastInfo.singleImage.split(",");
-      this.$nextTick(() => {
-        //点击放大图片
-        $("#jqhtml").viewer({
-          url: "data-original",
-          toolbar: {
-            zoomIn: 4,
-            zoomOut: 4,
-            oneToOne: false,
-            reset: false,
-            prev: false,
-            play: {
-              show: 4,
-              size: "large",
-            },
-            next: false,
-            rotateLeft: false,
-            rotateRight: false,
-            flipHorizontal: 4,
-            flipVertical: 4,
-          },
-        });
-      });
+      this.creditRadio = 1;
+      this.creditValue = "";
+      // this.$nextTick(() => {
+      //   //点击放大图片
+      //   $("#jqhtml").viewer({
+      //     url: "data-original",
+      //     toolbar: {
+      //       zoomIn: 4,
+      //       zoomOut: 4,
+      //       oneToOne: false,
+      //       reset: false,
+      //       prev: false,
+      //       play: {
+      //         show: 4,
+      //         size: "large",
+      //       },
+      //       next: false,
+      //       rotateLeft: false,
+      //       rotateRight: false,
+      //       flipHorizontal: 4,
+      //       flipVertical: 4,
+      //     },
+      //   });
+      // });
     },
     submitBtn(orderId) {
       console.log(orderId, this.radio);
       let param = {};
-      if (this.radio == 13) {
+      // if (this.radio == 13) {
+      //   //驳回
+      //   if (!this.textarea) {
+      //     this.$message({
+      //       message: "请输入驳回原因",
+      //       type: "warning",
+      //     });
+      //   } else {
+      //     console.log(this.textarea);
+      //     param = {
+      //       orderId: orderId,
+      //       status: this.radio,
+      //       rejectReason: this.textarea,
+      //       creditId:this.creditValue
+      //     };
+      //     console.log(param)
+      //     this.singPost(param);
+      //   }
+      // }else if(this.creditRadio == 2){
+      //   console.log(this.creditValue)
+      //   if(this.creditValue==''){
+      //     this.$message({
+      //       message: "请选择扣分项",
+      //       type: "warning",
+      //     });
+      //   }else{
+      //     param = {
+      //       orderId: orderId,
+      //       status: this.radio,
+      //       rejectReason: this.textarea,
+      //       creditId:this.creditValue
+      //     };
+      //     console.log(param)
+      //     this.singPost(param);
+      //   }
+      // }
+      if (this.radio == 13 && !this.textarea) {
         //驳回
-        if (!this.textarea) {
           this.$message({
             message: "请输入驳回原因",
             type: "warning",
           });
-        } else {
-          console.log(this.textarea);
-          param = {
-            orderId: orderId,
-            status: this.radio,
-            rejectReason: this.textarea,
-          };
-          this.singPost(param);
-        }
-      } else {
+      }else if(this.creditRadio == 2 && !this.creditValue){
+        this.$message({
+          message: "请选择扣分项",
+          type: "warning",
+        });
+      }else {
         console.log(orderId, this.radio);
         param = {
           orderId: orderId,
           status: this.radio,
+          rejectReason: this.textarea,
+          creditId:this.creditValue
         };
         this.singPost(param);
       }
@@ -172,11 +220,31 @@ new Vue({
         }
       });
     },
+    selectPoint(){
+      parent.modal.loaders("block");
+      axios
+        .get("/app/admin/v1/credit/query/points", {
+          params: { type: 1},
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            parent.modal.loaders();
+            this.creditList = res.data.data;
+          }
+        });
+    },
+    changeReason(){
+      this.textarea = '';
+    },
+    changePoint(){
+      this.creditValue = '';
+    },
     phoneList() {
       console.log(this.phoneNum, this.chooseStatus);
       let param = {
         status: this.chooseStatus,
-        page: this.currentPage,
+        page: 1,
         size: this.size,
         phone: this.phoneNum,
       };

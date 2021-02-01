@@ -7,10 +7,11 @@
 
     <link href="../../css/bootstrap.css" rel="stylesheet" />
     <link href="../../daichao/css/loader.css" rel="stylesheet" />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
-    />
+    /> -->
+    <link rel="stylesheet" href="../../css/element-ui.css" />
     <link href="../common/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../common/viewer.min.css" />
   </head>
@@ -58,7 +59,13 @@
     .info_top {
       margin-top: 15px;
     }
-
+    .credit_div {
+      display: flex;
+      align-items: center;
+    }
+    .credit_choose {
+      margin-left: 50px;
+    }
     .info_img {
       width: 150px;
       height: 110px;
@@ -89,6 +96,9 @@
 
     .el-textarea {
       width: 40%;
+    }
+    .el-image-viewer__wrapper {
+      z-index: 3000 !important;
     }
   </style>
 
@@ -147,6 +157,7 @@
               <th>信贷员姓名</th>
               <th>用户手机号</th>
               <th>价格</th>
+              <th v-show="chooseStatus==14">申请退单时间</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -156,6 +167,7 @@
               <td>{{item.creditName}}</td>
               <td>{{item.userPhone}}</td>
               <td>{{item.goldCount}}</td>
+              <td v-show="chooseStatus==14">{{item.gmtCreate}}</td>
               <td>
                 <button class="btn setProduct" @click="showDigo(item)">
                   查看
@@ -200,14 +212,22 @@
                 <div class="info_top info_dis">
                   <span class="info_left">证明截图</span>
                   <div>
-                    <img
+                    <el-image
                       v-for="(item,index) in toastImgs"
-                      ::key="index"
+                      :key="index"
+                      style="width: 150px; height: 110px; margin-right: 10px"
+                      :src="item"
+                      :preview-src-list="toastImgs"
+                    >
+                      <!-- <img
+                      v-for="(item,index) in toastImgs"
+                      :key="index"
                       class="info_img"
                       :src="item"
                       alt=""
                       :data-original="item"
-                    />
+                    /> -->
+                    </el-image>
                   </div>
                 </div>
               </div>
@@ -270,6 +290,7 @@
                 style="margin-top: 4px"
                 v-model="radio"
                 fill="“red"
+                @change="changeReason"
               >
                 <el-radio :label="12">通过</el-radio>
                 <el-radio :label="13">驳回</el-radio>
@@ -292,6 +313,41 @@
               <span class="info_left">驳回原因</span>
               <span>{{toastInfo.rejectReason}}</span>
             </div>
+            <!--  -->
+            <div class="info_top credit_div" v-show="chooseStatus==14">
+              <div>
+                <span class="info_left">是否扣除信用分</span>
+                <el-radio-group
+                  style="margin-top: 4px"
+                  v-model="creditRadio"
+                  fill="“red"
+                  @change="changePoint"
+                >
+                  <el-radio :label="1">否</el-radio>
+                  <el-radio :label="2">是</el-radio>
+                </el-radio-group>
+              </div>
+              <div
+                class="credit_choose"
+                v-show="chooseStatus==14&&creditRadio==2"
+              >
+                <span class="info_left">选择扣分项</span>
+                <el-select
+                  v-model="creditValue"
+                  clearable
+                  placeholder="请选择扣分项"
+                  size="mini"
+                >
+                  <el-option
+                    v-for="item in creditList"
+                    :key="item.id"
+                    :label="item.title+item.remark"
+                    :value="item.id"
+                  >
+                  </el-option>
+                </el-select>
+              </div>
+            </div>
           </div>
           <div slot="footer" class="dialog-footer" v-show="chooseStatus==14">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -308,14 +364,15 @@
     <script src="../../daichao/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- <script src="https://unpkg.com/element-ui/lib/index.js"></script> -->
+    <script src="../../js/vue/element-ui.js"></script>
 
-    <script
+    <!-- <script
       type="text/javascript"
       charset="utf-8"
       src="../common/viewer-jquery.min.js"
     ></script>
-    <script src="../common/viewer.min.js"></script>
+    <script src="../common/viewer.min.js"></script> -->
 
     <script src="../common/common.js"></script>
     <script src="./js/chargeBack.js"></script>

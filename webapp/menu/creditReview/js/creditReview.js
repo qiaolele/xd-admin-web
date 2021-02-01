@@ -10,7 +10,7 @@ new Vue({
     companyName: "",
     companyAdress: "",
     idCard: [], //身份证照片
-    faceImage: "", //活体照片
+    faceImage: [], //活体照片
     prove: [], //资质证明
     radio: 2, //2:通过 3：驳回
     dialogFormVisible: false, //是否显示弹窗
@@ -19,7 +19,15 @@ new Vue({
     phoneNum: "", //输入手机号查询
     totalNum: 0,
     videoUrl:'',
-    remark:''
+    remark:'',//输入驳回原因
+    infoRemark:'',//上次驳回原因
+    pointsAdminToast:false,//信用分账号管理窗口
+    deleteInfo:{},//账号管理信息
+    deletePoint:'',//扣除信用分
+    deleteList:[],
+    clearInfoToast:false,//清认证信息弹窗
+    clearInput:'',//输入清认证信息原因
+    clearId:'',
   },
   created() {
     this.getList(this.chooseStatus, this.currentPage);
@@ -63,6 +71,7 @@ new Vue({
       this.currentPage = 1;
       this.phoneNum = "";
       this.getList(this.chooseStatus, this.currentPage);
+      this.selectPoint();
     },
     clickTabThree() {
       this.chooseStatus = 3;
@@ -99,39 +108,42 @@ new Vue({
             this.idCard = []; //身份证信息
             this.idCard.push(info.idcardBack);
             this.idCard.push(info.idcardFront);
-            this.faceImage = info.faceImage;
+            // this.faceImage = info.faceImage;
+            this.faceImage = [];
+            this.faceImage.push(info.faceImage);
             this.prove = [];
             this.prove.push(info.qualificaAuth ? info.qualificaAuth.logo : "");
             if(info.qualificaAuth.means){
-              this.prove.push(info.qualificaAuth ? info.qualificaAuth.means : "");
+              // this.prove.push(info.qualificaAuth ? info.qualificaAuth.means : "");
+              this.prove.push(info.qualificaAuth.means);
             }
-            if(info.qualificaAuth.contracts){
-              this.prove.push(info.qualificaAuth ? info.qualificaAuth.contracts : "");
-            }
+            this.prove.push(info.qualificaAuth ? info.qualificaAuth.contracts : "");
+            console.log(this.prove)
             this.videoUrl = info.qualificaAuth ? info.qualificaAuth.videoUrl : "";
             this.remark = info.remark;
+            this.infoRemark = info.remark;
             this.commitId = info.id;
-            this.$nextTick(() => {
-              $("#jqhtml").viewer({
-                url: "data-original",
-                toolbar: {
-                  zoomIn: 4,
-                  zoomOut: 4,
-                  oneToOne: false,
-                  reset: false,
-                  prev: false,
-                  play: {
-                    show: 4,
-                    size: "large",
-                  },
-                  next: false,
-                  rotateLeft: false,
-                  rotateRight: false,
-                  flipHorizontal: 4,
-                  flipVertical: 4,
-                },
-              });
-            });
+            // this.$nextTick(() => {
+            //   $("#jqhtml").viewer({
+            //     url: "data-original",
+            //     toolbar: {
+            //       zoomIn: 4,
+            //       zoomOut: 4,
+            //       oneToOne: false,
+            //       reset: false,
+            //       prev: false,
+            //       play: {
+            //         show: 4,
+            //         size: "large",
+            //       },
+            //       next: false,
+            //       rotateLeft: false,
+            //       rotateRight: false,
+            //       flipHorizontal: 4,
+            //       flipVertical: 4
+            //     },
+            //   });
+            // });
           }
         });
     },
@@ -191,6 +203,91 @@ new Vue({
           
         }
       });
+    },
+    showPoint(id){//信用分管理
+      parent.modal.loaders("block");
+      axios
+        .get("/app/admin/v1/credit/user/info", {
+          params: { userId: id},
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            parent.modal.loaders();
+            this.pointsAdminToast = true;
+            this.deleteInfo = res.data.data;
+          }
+        });
+    },
+    selectPoint(){
+      parent.modal.loaders("block");
+      axios
+        .get("/app/admin/v1/credit/query/points", {
+          params: { type: 0},
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            parent.modal.loaders();
+            this.deleteList = res.data.data;
+          }
+        });
+    },
+    subPoint(userId){
+      if(this.deletePoint){
+        parent.modal.loaders("block");
+        axios({
+          method: "post",
+          url: "/app/admin/v1/credit/reduce/score",
+          params: {
+            userId: userId,
+            id: this.deletePoint,
+          },
+        }).then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            this.pointsAdminToast = false;
+            this.deletePoint = '';
+            parent.modal.loaders();
+          }
+        });
+      }else{
+        this.$message({
+          message: "请选择扣分项",
+          type: "warning",
+        });
+      }
+    },
+    getTime (time) {
+      if (time.split("T").length) {
+        return time.split("T")[0] + ' ' + time.split("T")[1]
+      }
+    },
+    clearInfo(id){//清认证信息
+      this.clearInfoToast = true;
+      this.clearId = id;
+    },
+    subClear(){//清认证信息确认按钮
+      if(this.clearInput){
+        parent.modal.loaders("block");
+        axios
+        .get("/app/admin/v1/auth/authIofo", {
+          params: { userId: this.clearId,remark:this.clearInput},
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.data.code == 200) {
+            parent.modal.loaders();
+            this.clearInfoToast = false;
+            this.clearInput = '';
+          }
+        });
+      }else{
+        this.$message({
+          message: "请输入原因",
+          type: "warning",
+        });
+      }
     }
   },
 });

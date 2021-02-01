@@ -13,14 +13,14 @@ const uri = `http://${ip.address()}:5010`;
 server.use(
   "/",
   express.static(path.join(rootPath, "webapp")),
-  proxy({
-    target: "http://xindaiguanjia-app-prod.itkyd.com",
-    changeOrigin: true,
-  })
   // proxy({
-  //   target: "http://xindaiguanjia-app-dev.itkyd.com",
+  //   target: "http://xindaiguanjia-app-prod.itkyd.com",
   //   changeOrigin: true,
   // })
+  proxy({
+    target: "http://xindaiguanjia-app-dev.itkyd.com",
+    changeOrigin: true,
+  })
   // proxy({ target: "http://192.168.2.112:8080", changeOrigin: true }) //亚轩
 );
 
